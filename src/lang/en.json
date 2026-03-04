@@ -1,0 +1,298 @@
+{
+  "common": {
+    "logout": "Logout",
+    "login": "Login",
+    "no_article": "No articles found",
+    "view_all": "View All",
+    "view_next": "View detail",
+    "address": "Address",
+    "phone": "Phone",
+    "contact": "Contact",
+    "contact_2": "Cooperation contact",
+    "search": "Search",
+    "no_data": "No data available",
+    "loading": "Loading..."
+  },
+  "grades": {
+    "placeholder": "Select a grade",
+    "grade_1": "Grade 1",
+    "grade_2": "Grade 2",
+    "grade_3": "Grade 3",
+    "grade_4": "Grade 4",
+    "grade_5": "Grade 5",
+    "grade_6": "Grade 6",
+    "grade_7": "Grade 7",
+    "grade_8": "Grade 8",
+    "grade_9": "Grade 9",
+    "grade_10": "Grade 10",
+    "grade_11": "Grade 11",
+    "grade_12": "Grade 12"
+  },
+  "examination_rounds": {
+    "placeholder": "Select an examination round"
+  },
+  "language": {
+    "english": "English",
+    "vietnamese": "Vietnamese"
+  },
+  "header": {
+    "goToExam": "Go to Exam",
+    "donate": "Donate",
+    "slogan": "The Vietnam Mathematics Playground (VNMF) is an activity under the National Key Program for Mathematics Development of the Ministry of Education and Training"
+  },
+  "footer": {
+    "title_1": "Organizing Unit",
+    "title_2": "VIASM - Vietnam Institute for Advanced Study in Mathematics",
+    "title_3": "Trang Nguyen Education - Trang Nguyen Education Organization",
+    "address_1": "161 Huynh Thuc Khang Street, Lang Ward, Hanoi",
+    "address_2": "No. 7, Alley 68, Trung Kinh Street, Yen Hoa Ward, Hanoi"
+  },
+  "menu": {
+    "home": "Home",
+    "intro": "About Us",
+    "advisory_board": "Advisory Board",
+    "guide": "Rules and Schedule",
+    "schedule": "Organization Guidelines",
+    "honor": "Rewards",
+    "news": "News",
+    "contact": "Contact Us",
+    "album": "Photo Album",
+    "intro.1": "About VNMF",
+    "intro.2": "Organizing Unit",
+    "guide.1": "Regulations",
+    "guide.2": "Schedule",
+    "guide.3": "Documents",
+    "schedule.1": "Organization Guidelines",
+    "schedule.2": "Documents",
+    "schedule.3": "Tutorial Video",
+    "news.1": "News",
+    "news.2": "VNMF Photos"
+  },
+  "home": {
+    "roundstep": {
+      "1": {
+        "title": "Warm-up",
+        "rounds": {
+          "1": "Online practice test"
+        }
+      },
+      "2": {
+        "title": "Exploration",
+        "rounds": {
+          "1": "Online test No. 1",
+          "2": "Online test No. 2",
+          "3": "Online test No. 3"
+        }
+      },
+      "3": {
+        "title": "Challenge (School Level)",
+        "rounds": {
+          "1": "Online test No. 1",
+          "2": "Online test No. 2"
+        }
+      },
+      "4": {
+        "title": "Conquer (Provincial Level)",
+        "rounds": {
+          "1": "Online test"
+        }
+      },
+      "5": {
+        "title": "Shine (National Level)",
+        "rounds": {
+          "1": "Online test",
+          "2": "Written test"
+        }
+      }
+    },
+    "focus": {
+      "title": "Top News"
+    },
+    "reward_chart": {
+      "no_data": "No reward data available",
+      "btn_explore": "View more",
+      "title": "Reward Chart",
+      "text": "Ranking Table",
+      "description": "Note: The ranking may not be updated, and the current rank may not reflect the latest results."
+    },
+    "banner": {
+      "btn_explore": "Explore more"
+    }
+  },
+  "detail": {
+    "title": "News Detail",
+    "related": "Related News",
+    "read_more": "Read more",
+    "like": "Like",
+    "share": "Share",
+    "share_to_facebook": "Share to Facebook",
+    "share_to_zalo": "Share to Zalo",
+    "share_to_linkedin": "Share to LinkedIn",
+    "author": "Author",
+    "views": "views",
+    "likes": "likes",
+    "shares": "shares"
+  },
+    "news":{
+    "1": "VNMF News",
+    "2": "Math News"
+  },
+  "rules": {
+    "title": "Rules and Schedule",
+    "home": "Home",
+    "rules": "Rules",
+    "schedule": "Schedule",
+    "dowload": "Dowload",
+    "rulesSupporting": [
+      {
+        "text": "References",
+        "button": "Dowload"
+      },
+      {
+        "text": "Tutorial Video",
+        "button": "Watch Now"
+      }
+    ]
+  },
+  "about": {
+    "title": "Introduction to the Vietnam Mathematics Playground (VNMF)"
+  },
+  "organizer": {
+    "title": "National Organizing Committee"
+  },
+  "contact": {
+    "title": "Contact",
+    "head_title": "Let the VNMF team provide you with support.",
+    "head_title_sponsorship": "Please contact the Organizing Committee for assistance.",
+    "title_contact": [
+      {
+        "contact": "Contact"
+      },
+      {
+        "contact": "Support Hotline"
+      },
+      {
+        "contact": "Teacher & DOET Support Line"
+      }
+    ],
+    "letter_title": "Need Support",
+    "letter_text1": "VNMF is pleased to assist you. Please leave your information with us.",
+    "letter_text2": "Your request will be processed and responded to as soon as possible.",
+    "letter_name": "Full Name *",
+    "letter_email": "Email *",
+    "letter_message": "Message *",
+    "letter_sending": "Sending...",
+    "letter_send": "Send Message",
+    "error_name": "Full name is required*",
+    "error_email": "Email is required*",
+    "error_email_format": "Email format is invalid*",
+    "error_message": "Message is required*",
+    "toastSuccess": "Message sent successfully!",
+    "toastError": "Failed to send message, please try again!",
+    "toastWarning1": "There was an error:",
+    "toastWarning2": "Unknown error"
+  },
+  "organize_guide": {
+    "title": "Organization Guidelines",
+    "button_video": "Tutorial Video",
+    "button_document": "Reference Document",
+    "button_video_download": "Watch Now",
+    "button_document_download": "Download",
+    "1": {
+      "title": "Organization Guidelines",
+      "sub_title_1": "School-level Guidelines",
+      "sub_title_2": "Provincial-level Guidelines",
+      "sub_title_3": "National-level Guidelines"
+    },
+    "2": {
+      "title": "Training Documents"
+    },
+    "3": {
+      "title": "Tutorial Video"
+    }
+  },
+  "academic_council": {
+    "title": "Academic Council"
+  },
+  "album": {
+    "title": "Photo Album",
+    "related_title": "Related Photo Albums"
+  },
+
+  "partner_unit": {
+    "title": "Partner Units",
+    "unitArr": [
+      {
+        "unit": "Organizing Unit",
+        "title_unit": "VIASM - Vietnam Institute for Advanced Study in Mathematics",
+        "info": [
+          {
+            "infoTitle": "Address:",
+            "text": "161 Huynh Thuc Khang Street, Lang Ward, Hanoi"
+          },
+          {
+            "infoTitle": "Phone:"
+          },
+          {
+            "infoTitle": "Email:"
+          },
+          {
+            "infoTitle": "Facebook:"
+          },
+          {
+            "infoTitle": "Web:"
+          }
+        ]
+      },
+      {
+        "unit": "Co-organizing Unit",
+        "info": [
+          {
+            "infoTitle": "Address:",
+            "text": "House No. 7, Alley 68 Trung KKinh, Cau Giay, Hanoi"
+          },
+          {
+            "infoTitle": "Phone:"
+          },
+          {
+            "infoTitle": "Email:"
+          },
+          {
+            "infoTitle": "Facebook:"
+          },
+          {
+            "infoTitle": "Web:"
+          },
+          {
+            "infoTitle": "Zalo:"
+          },
+          {
+            "infoTitle": "Tiktok:"
+          }
+        ]
+      }
+    ]
+  },
+
+  "sponsorship": {
+    "title": "Sponsorship",
+    "menu_tabs": [
+      {"label": "Purpose of Sponsorship"},
+      {"label": "Benefits for Sponsors"},
+      {"label": "List of Sponsors" },
+      {"label": "Sponsorship Methods" }
+    ],
+    "text1": "EN-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum -Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut Odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam",
+    "text2":"EN-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum -Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut Odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam",
+    "list_sponsor":[
+      {"label": "Diamond Sponsor"},
+      {"label": "Gold Sponsor"},
+      {"label": "Silver Sponsor"},
+      {"label": "Bronze Sponsor"}
+    ],
+    "item_method": [
+      { "title": "Sponsorship Level"},
+      { "title": "Transfer Note"}
+    ]
+  }
+}

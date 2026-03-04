@@ -1,0 +1,58 @@
+# Dependencies
+node_modules
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env*.local
+.env
+
+# Build outputs
+.next
+out
+dist
+build
+
+# Testing
+coverage
+cypress/screenshots
+cypress/videos
+
+# Storybook
+storybook-static
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+*.tgz
+*.tar.gz
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+*.md
+
+# CI/CD
+.gitlab-ci.yml
+ci-template/
+
+# Development tools
+.eslintrc
+.eslintignore
+commitlint.config.js
+lint-staged.config.js
+
+# Misc
+.husky
+local

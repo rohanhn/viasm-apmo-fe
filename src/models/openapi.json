@@ -1,0 +1,2703 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "FastAPI",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/product": {
+      "get": {
+        "tags": ["product_package", "product_package"],
+        "summary": "Product Package List",
+        "operationId": "product_package_list_product_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Page",
+              "default": 0
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Size",
+              "default": 10
+            },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Group Name",
+              "default": ""
+            },
+            "name": "group_name",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_List_src.models.product_packages.ListProductPackagesResp__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/product_detail": {
+      "get": {
+        "tags": ["product_package", "product_package"],
+        "summary": "Get Product Package Detail",
+        "operationId": "get_product_package_detail_product_product_detail_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Product Package Id",
+              "type": "string"
+            },
+            "name": "product_package_id",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_ListProductPackagesResp_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": ["user", "user"],
+        "summary": "Users Login",
+        "operationId": "users_login_user_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/me": {
+      "get": {
+        "tags": ["user", "user"],
+        "summary": "Get User Info From Access Token",
+        "operationId": "get_user_info_from_access_token_user_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/change-password": {
+      "post": {
+        "tags": ["user", "user"],
+        "summary": "Users Change Password",
+        "operationId": "users_change_password_user_change_password_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserChangePasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/refresh-token": {
+      "post": {
+        "tags": ["user", "user"],
+        "summary": "Users Refresh Token",
+        "operationId": "users_refresh_token_user_refresh_token_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRefreshTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/register": {
+      "post": {
+        "tags": ["user", "user"],
+        "summary": "Users Register",
+        "operationId": "users_register_user_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/update": {
+      "post": {
+        "tags": ["user", "user"],
+        "summary": "Users Update",
+        "operationId": "users_update_user_update_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/forget-password": {
+      "post": {
+        "tags": ["user", "user"],
+        "summary": "Forget Password",
+        "operationId": "forget_password_user_forget_password_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserForgetPasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/search-by-exam-number": {
+      "get": {
+        "tags": ["user", "user"],
+        "summary": "Search By Exam Number",
+        "operationId": "search_by_exam_number_user_search_by_exam_number_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Owner Id",
+              "type": "string"
+            },
+            "name": "owner_id",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Exam Number",
+              "type": "string"
+            },
+            "name": "exam_number",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/get-avatar-link": {
+      "get": {
+        "tags": ["user", "user"],
+        "summary": "Get Avatar Link",
+        "operationId": "get_avatar_link_user_get_avatar_link_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Owner Id",
+              "type": "string"
+            },
+            "name": "owner_id",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Gender",
+              "type": "string"
+            },
+            "name": "gender",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/register-captcha": {
+      "post": {
+        "tags": ["user", "user"],
+        "summary": "Users Register With Captcha",
+        "operationId": "users_register_with_captcha_user_register_captcha_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/forget-password-captcha": {
+      "post": {
+        "tags": ["user", "user"],
+        "summary": "Forget Password Captcha",
+        "operationId": "forget_password_captcha_user_forget_password_captcha_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserForgetPasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/search-es-exam-number": {
+      "get": {
+        "tags": ["user", "user"],
+        "summary": "Search Elastic Exam Number",
+        "operationId": "search_elastic_exam_number_user_search_es_exam_number_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Owner Id",
+              "type": "string"
+            },
+            "name": "owner_id",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Exam Number",
+              "type": "string"
+            },
+            "name": "exam_number",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/common/ping": {
+      "get": {
+        "tags": ["common", "common"],
+        "summary": "Api Ping",
+        "operationId": "api_ping_common_ping_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/common/get_countries": {
+      "get": {
+        "tags": ["common", "common"],
+        "summary": "Get Countries",
+        "operationId": "get_countries_common_get_countries_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/common/get_ethnics": {
+      "get": {
+        "tags": ["common", "common"],
+        "summary": "Get Ethnics",
+        "operationId": "get_ethnics_common_get_ethnics_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Country Id",
+              "type": "string"
+            },
+            "name": "country_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/common/get_provinces": {
+      "get": {
+        "tags": ["common", "common"],
+        "summary": "Get Provinces",
+        "operationId": "get_provinces_common_get_provinces_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Country Id",
+              "type": "string"
+            },
+            "name": "country_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/common/get_districts": {
+      "get": {
+        "tags": ["common", "common"],
+        "summary": "Get Districts",
+        "operationId": "get_districts_common_get_districts_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Country Id",
+              "type": "string"
+            },
+            "name": "country_id",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Province Id",
+              "type": "string"
+            },
+            "name": "province_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/common/get_schools": {
+      "get": {
+        "tags": ["common", "common"],
+        "summary": "Get Schools",
+        "operationId": "get_schools_common_get_schools_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Country Id",
+              "type": "string"
+            },
+            "name": "country_id",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Province Id",
+              "type": "string"
+            },
+            "name": "province_id",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "District Id",
+              "type": "string"
+            },
+            "name": "district_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/common/get_prefix_media_url": {
+      "get": {
+        "tags": ["common", "common"],
+        "summary": "Get Prefix Media Url",
+        "operationId": "get_prefix_media_url_common_get_prefix_media_url_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Owner Id",
+              "type": "string"
+            },
+            "name": "owner_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment/callback": {
+      "post": {
+        "tags": ["payment", "payment"],
+        "summary": "Callback",
+        "operationId": "callback_payment_callback_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentCallRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment": {
+      "post": {
+        "tags": ["payment", "payment"],
+        "summary": "Create Payment Transaction",
+        "operationId": "create_payment_transaction_payment_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_CreatePaymentResp_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment/remove_item": {
+      "post": {
+        "tags": ["payment", "payment"],
+        "summary": "Remove Item",
+        "operationId": "remove_item_payment_remove_item_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveItemRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_VerifyPaymentResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment/verify": {
+      "post": {
+        "tags": ["payment", "payment"],
+        "summary": "Verify Payment",
+        "operationId": "verify_payment_payment_verify_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyPaymentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_VerifyPaymentResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment/order": {
+      "post": {
+        "tags": ["payment", "payment"],
+        "summary": "Create Payment Order",
+        "operationId": "create_payment_order_payment_order_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentOrderRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_PaymentOrderResp_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment{tran_id}": {
+      "get": {
+        "tags": ["payment", "payment"],
+        "summary": "Detail Payment Transaction",
+        "operationId": "detail_payment_transaction_payment_tran_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Tran Id",
+              "type": "string"
+            },
+            "name": "tran_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_DetailPaymentTransaction_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart/{cart_id}": {
+      "get": {
+        "tags": ["cart", "cart"],
+        "summary": "Get Details",
+        "operationId": "get_details_cart__cart_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Cart Id",
+              "type": "string"
+            },
+            "name": "cart_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_CartDetailReps_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart/remove_item": {
+      "post": {
+        "tags": ["cart", "cart"],
+        "summary": "Remove Item",
+        "operationId": "remove_item_cart_remove_item_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveToCartParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_RemoveToCartResp_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart/add_item": {
+      "post": {
+        "tags": ["cart", "cart"],
+        "summary": "Add To Cart",
+        "operationId": "add_to_cart_cart_add_item_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddItemToCartParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_AddItemToCartResp_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/voucher/verify/{code}": {
+      "get": {
+        "tags": ["voucher", "voucher"],
+        "summary": "Verify Voucher",
+        "operationId": "verify_voucher_voucher_verify__code__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Code",
+              "type": "string"
+            },
+            "name": "code",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_VoucherResp_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/voucher/apply": {
+      "post": {
+        "tags": ["voucher", "voucher"],
+        "summary": "Apply Voucher",
+        "operationId": "apply_voucher_voucher_apply_post",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "title": "Owner-Id",
+              "type": "string"
+            },
+            "name": "owner-id",
+            "in": "header"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "User-Id",
+              "type": "string"
+            },
+            "name": "user-id",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyVoucherReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/R_VoucherResp_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddItemToCartParams": {
+        "title": "AddItemToCartParams",
+        "type": "object",
+        "properties": {
+          "product_package_id": {
+            "title": "Định danh gói sản phẩm",
+            "type": "string",
+            "default": ""
+          },
+          "cart_id": {
+            "title": "Định danh giỏ hàng(Nếu trường này có dữ liệu trong localstorage là add vào item vào cart_id này. NULL là tạo mới cart)",
+            "type": "string",
+            "default": ""
+          },
+          "students": {
+            "title": "Danh sách học viên được mua hộ",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserByIDOrName"
+            },
+            "default": []
+          }
+        }
+      },
+      "AddItemToCartResp": {
+        "title": "AddItemToCartResp",
+        "required": ["product_packages"],
+        "type": "object",
+        "properties": {
+          "cart_id": {
+            "title": "Định danh giỏ hàng(Nếu định danh giỏ hàng chưa có trong localstorage thì lưu lại)",
+            "type": "string",
+            "default": ""
+          },
+          "total_amount": {
+            "title": "Tổng tiền thanh toán",
+            "type": "integer",
+            "default": 0
+          },
+          "product_packages": {
+            "title": "Danh sách gói sản phẩm",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductPackageResponse"
+            }
+          }
+        }
+      },
+      "ApplyVoucherReq": {
+        "title": "ApplyVoucherReq",
+        "required": ["code", "product_package_id", "product_transaction_id"],
+        "type": "object",
+        "properties": {
+          "code": {
+            "title": "Mã voucher",
+            "type": "string"
+          },
+          "product_package_id": {
+            "title": "Định danh gói",
+            "type": "string"
+          },
+          "product_transaction_id": {
+            "title": "Định danh giao dịch",
+            "type": "string"
+          }
+        }
+      },
+      "CartDetailReps": {
+        "title": "CartDetailReps",
+        "required": ["cart_id", "product_packages"],
+        "type": "object",
+        "properties": {
+          "cart_id": {
+            "title": "Định danh giỏ hàng",
+            "type": "string"
+          },
+          "total_amount": {
+            "title": "Tổng tiền thanh toán",
+            "type": "integer",
+            "default": 0
+          },
+          "product_packages": {
+            "title": "Danh sách gói sản phẩm",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductPackageResponse"
+            }
+          }
+        }
+      },
+      "CreatePaymentRequest": {
+        "title": "CreatePaymentRequest",
+        "required": ["product_packages"],
+        "type": "object",
+        "properties": {
+          "cart_id": {
+            "title": "Định danh giỏ hàng, định danh này được lưu phía client. Chỉ khi thanh toán qua giỏ hàng thì có định danh này",
+            "type": "string",
+            "default": ""
+          },
+          "product_packages": {
+            "title": "Danh sách package mà người mua",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductPackageRequest"
+            }
+          }
+        }
+      },
+      "CreatePaymentResp": {
+        "title": "CreatePaymentResp",
+        "type": "object",
+        "properties": {
+          "product_transaction_id": {
+            "title": "Định danh của một giao dịch thanh toán",
+            "type": "string",
+            "default": ""
+          },
+          "total_amount": {
+            "title": "Tổng tiền thanh toán",
+            "type": "integer",
+            "default": 0
+          },
+          "product_packages": {
+            "title": "Danh sách gói sản phẩm",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductPackageResponse"
+            },
+            "default": []
+          },
+          "total_voucher_amount": {
+            "title": "Tổng tiền được giảm từ voucher",
+            "type": "integer",
+            "default": 0
+          },
+          "cart_id": {
+            "title": "Định danh giỏ hàng, định danh này được lưu phía client. Chỉ khi thanh toán qua giỏ hàng thì có định danh này",
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "DetailPaymentTransaction": {
+        "title": "DetailPaymentTransaction",
+        "required": [
+          "product_transaction_id",
+          "payer_id",
+          "product_packages",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "product_transaction_id": {
+            "title": "Định danh giao dịch",
+            "type": "string"
+          },
+          "payer_id": {
+            "title": "Người thanh toán",
+            "type": "string"
+          },
+          "payer_name": {
+            "title": "Tên người thanh toán",
+            "type": "string"
+          },
+          "cart_id": {
+            "title": "Giỏ hàng id, giỏ hàng này được lưu phía client",
+            "type": "string"
+          },
+          "total_amount": {
+            "title": "Tổng giá trị thanh toán",
+            "type": "integer"
+          },
+          "product_packages": {
+            "title": "Danh sách package",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentProductPackage"
+            }
+          },
+          "pay_info": {
+            "$ref": "#/components/schemas/PayInfo"
+          },
+          "status": {
+            "title": "1: Chờ xác nhận; 2: đã xác nhận; 3: chờ thanh toán; 4: đã thanh toán; 5: đã hủy; 6: thanh toán thất bại",
+            "type": "integer"
+          },
+          "total_voucher_amount": {
+            "title": "Tổng tiền được giảm từ voucher",
+            "type": "integer",
+            "default": 0
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "ListProductPackagesResp": {
+        "title": "ListProductPackagesResp",
+        "required": [
+          "product_package_id",
+          "group_name",
+          "level",
+          "info",
+          "price",
+          "monetary_unit",
+          "product_package_name",
+          "limitation",
+          "review_point",
+          "number_of_reviewers",
+          "number_of_users",
+          "icon_link"
+        ],
+        "type": "object",
+        "properties": {
+          "product_package_id": {
+            "title": "Định danh sản phẩm",
+            "type": "string"
+          },
+          "group_name": {
+            "title": "Nhóm các gói sản phẩm TRANG_NGUYEN_TIENG_VIET, TRANG_NGUYEN_TOAN_TAI, TRANG_NGUYEN_LICH_SU, TRUONG_HOC_TRUC_TUYEN, CONG_NGHE_GIAO_DUC",
+            "type": "string"
+          },
+          "level": {
+            "title": "Cấp độ giá trị từ 1 - 12",
+            "type": "integer"
+          },
+          "info": {
+            "title": "Thông tin mô tả sản phẩm",
+            "type": "string"
+          },
+          "price": {
+            "title": "Giá tiền sản phẩm",
+            "type": "integer"
+          },
+          "monetary_unit": {
+            "title": "Đơn vị tiền tệ",
+            "type": "string"
+          },
+          "product_package_name": {
+            "title": "Tên sản phẩm",
+            "type": "string"
+          },
+          "limitation": {
+            "title": "Thời hạn hiệu lực: 0 là không thời hạn (trọn đời); n là n tháng",
+            "type": "integer"
+          },
+          "review_point": {
+            "title": "Điểm đánh giá chỉ nằm từ 1 - 5",
+            "type": "integer"
+          },
+          "number_of_reviewers": {
+            "title": "number_of_reviewers",
+            "type": "integer"
+          },
+          "number_of_users": {
+            "title": "number_of_users",
+            "type": "integer"
+          },
+          "icon_link": {
+            "title": "icon_link",
+            "type": "string"
+          }
+        }
+      },
+      "PayInfo": {
+        "title": "PayInfo",
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "phone_number": {
+            "title": "Phone Number",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          }
+        }
+      },
+      "PaymentCallRequest": {
+        "title": "PaymentCallRequest",
+        "required": ["amount"],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "title": "amount",
+            "type": "integer"
+          },
+          "service_request_id": {
+            "title": "Phía gateway trả về duy nhất cho mỗi giao dịch",
+            "type": "string",
+            "default": ""
+          },
+          "extra_data": {
+            "title": "extra_data",
+            "type": "string",
+            "default": ""
+          },
+          "partner_code": {
+            "title": "partner_code",
+            "type": "string",
+            "default": ""
+          },
+          "ref_order_id": {
+            "title": "ref_order_id",
+            "type": "string",
+            "default": ""
+          },
+          "response_time": {
+            "title": "response_time",
+            "type": "string",
+            "default": ""
+          },
+          "service_code": {
+            "title": "service_code",
+            "type": "string",
+            "default": ""
+          },
+          "status": {
+            "title": "success",
+            "type": "integer",
+            "default": 0
+          },
+          "signature": {
+            "title": "signature",
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "PaymentOrderRequest": {
+        "title": "PaymentOrderRequest",
+        "type": "object",
+        "properties": {
+          "payment_method": {
+            "title": "Phương thức thanh toán(1: VNPAY_QR_IN, 2: VNPAY_ATM_IN, 3: VNPAY_CC_IN)",
+            "type": "integer",
+            "default": 2
+          },
+          "product_transaction_id": {
+            "title": "Định danh của một giao dịch thanh toán",
+            "type": "string",
+            "default": ""
+          },
+          "url_redirect": {
+            "title": "Url muốn chuyển hướng đến sau khi khách hàng thanh toán thành công",
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "PaymentOrderResp": {
+        "title": "PaymentOrderResp",
+        "type": "object",
+        "properties": {
+          "product_transaction_id": {
+            "title": "Định danh của một giao dịch thanh toán",
+            "type": "string",
+            "default": ""
+          },
+          "pay_url": {
+            "title": "Đường link thanh toán",
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "PaymentProductPackage": {
+        "title": "PaymentProductPackage",
+        "type": "object",
+        "properties": {
+          "product_package_id": {
+            "title": "Product Package Id",
+            "type": "string"
+          },
+          "cart_item_id": {
+            "title": "Cart Item Id",
+            "type": "string"
+          },
+          "product_package_name": {
+            "title": "Product Package Name",
+            "type": "string"
+          },
+          "price": {
+            "title": "Price",
+            "type": "string"
+          },
+          "monetary_unit": {
+            "title": "Monetary Unit",
+            "type": "string"
+          },
+          "voucher_id": {
+            "title": "Voucher Id",
+            "type": "string"
+          },
+          "voucher_code": {
+            "title": "Voucher Code",
+            "type": "string"
+          },
+          "voucher_monetary_unit": {
+            "title": "Voucher Monetary Unit",
+            "type": "string"
+          },
+          "voucher_value": {
+            "title": "Voucher Value",
+            "type": "string"
+          },
+          "user_names_list": {
+            "title": "User Names List",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserByIDOrName"
+            }
+          },
+          "package_total_amount": {
+            "title": "Tổng tiền theo từng gói sản phẩm",
+            "type": "integer",
+            "default": 0
+          }
+        }
+      },
+      "ProductPackageRequest": {
+        "title": "ProductPackageRequest",
+        "type": "object",
+        "properties": {
+          "product_package_id": {
+            "title": "Định danh gói sản phẩm",
+            "type": "string",
+            "default": ""
+          },
+          "users": {
+            "title": "Danh sách định danh học viên được mua hộ",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "cart_item_id": {
+            "title": "Nếu click thanh toán từ giỏ hàng thì có thêm thông tin này",
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "ProductPackageResponse": {
+        "title": "ProductPackageResponse",
+        "type": "object",
+        "properties": {
+          "product_package_id": {
+            "title": "Định danh gói sản phẩm",
+            "type": "string",
+            "default": ""
+          },
+          "product_package_name": {
+            "title": "Tên gói sản phẩm",
+            "type": "string",
+            "default": ""
+          },
+          "price": {
+            "title": "Giá tiền của gói sản phẩm",
+            "type": "integer",
+            "default": 0
+          },
+          "user_names_list": {
+            "title": "Danh sách định danh học viên được mua hộ",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserByIDOrName"
+            },
+            "default": []
+          },
+          "cart_item_id": {
+            "title": "Nếu click thanh toán từ giỏ hàng thì có thêm thông tin này",
+            "type": "string",
+            "default": ""
+          },
+          "package_total_amount": {
+            "title": "Tổng tiền theo từng gói sản phẩm",
+            "type": "integer",
+            "default": 0
+          }
+        }
+      },
+      "R": {
+        "title": "R",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý"
+          }
+        }
+      },
+      "R_AddItemToCartResp_": {
+        "title": "R[AddItemToCartResp]",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AddItemToCartResp"
+              }
+            ]
+          }
+        }
+      },
+      "R_CartDetailReps_": {
+        "title": "R[CartDetailReps]",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CartDetailReps"
+              }
+            ]
+          }
+        }
+      },
+      "R_CreatePaymentResp_": {
+        "title": "R[CreatePaymentResp]",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CreatePaymentResp"
+              }
+            ]
+          }
+        }
+      },
+      "R_DetailPaymentTransaction_": {
+        "title": "R[DetailPaymentTransaction]",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DetailPaymentTransaction"
+              }
+            ]
+          }
+        }
+      },
+      "R_ListProductPackagesResp_": {
+        "title": "R[ListProductPackagesResp]",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ListProductPackagesResp"
+              }
+            ]
+          }
+        }
+      },
+      "R_List_src.models.product_packages.ListProductPackagesResp__": {
+        "title": "R[List[src.models.product_packages.ListProductPackagesResp]]",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListProductPackagesResp"
+            }
+          }
+        }
+      },
+      "R_PaymentOrderResp_": {
+        "title": "R[PaymentOrderResp]",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentOrderResp"
+              }
+            ]
+          }
+        }
+      },
+      "R_RemoveToCartResp_": {
+        "title": "R[RemoveToCartResp]",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RemoveToCartResp"
+              }
+            ]
+          }
+        }
+      },
+      "R_VerifyPaymentResponse_": {
+        "title": "R[VerifyPaymentResponse]",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VerifyPaymentResponse"
+              }
+            ]
+          }
+        }
+      },
+      "R_VoucherResp_": {
+        "title": "R[VoucherResp]",
+        "type": "object",
+        "properties": {
+          "status": {
+            "title": "Mã lỗi của hệ thống 1: SUCCESS; khác 1 là thất bại, Nếu thất bại thì message trả về thông báo lỗi. Thành công sẽ có data, data có cấu trúc Json hoặc JsonArray",
+            "type": "integer",
+            "default": 1
+          },
+          "message": {
+            "title": "Message trả về khi có thông báo lỗi hoặc thành công mà muốn nhận message từ phía server",
+            "type": "string"
+          },
+          "data": {
+            "title": "Data được trả vể khi nghiệp vụ cần có dữ liệu xử lý",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VoucherResp"
+              }
+            ]
+          }
+        }
+      },
+      "RemoveItemRequest": {
+        "title": "RemoveItemRequest",
+        "type": "object",
+        "properties": {
+          "product_package_id": {
+            "title": "Định danh gói sản phẩm",
+            "type": "string",
+            "default": ""
+          },
+          "cart_id": {
+            "title": "Định danh giỏ hàng trường này có giá trị khi click từ giỏ hàng",
+            "type": "string",
+            "default": ""
+          },
+          "student_id": {
+            "title": "Định danh người được mua hộ",
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "RemoveToCartParams": {
+        "title": "RemoveToCartParams",
+        "type": "object",
+        "properties": {
+          "cart_id": {
+            "title": "Định danh giỏ hàng",
+            "type": "string",
+            "default": ""
+          },
+          "product_package_id": {
+            "title": "Định danh gói sản phẩm",
+            "type": "string",
+            "default": ""
+          },
+          "student_id": {
+            "title": "Định danh học sinh được mua hộ",
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "RemoveToCartResp": {
+        "title": "RemoveToCartResp",
+        "required": ["product_packages"],
+        "type": "object",
+        "properties": {
+          "cart_id": {
+            "title": "Định danh giỏ hàng(Nếu định danh giỏ hàng chưa có trong localstorage thì lưu lại)",
+            "type": "string",
+            "default": ""
+          },
+          "total_amount": {
+            "title": "Tổng tiền thanh toán",
+            "type": "integer",
+            "default": 0
+          },
+          "product_packages": {
+            "title": "Danh sách gói sản phẩm",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductPackageResponse"
+            }
+          }
+        }
+      },
+      "UserByIDOrName": {
+        "title": "UserByIDOrName",
+        "required": ["user_id"],
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "title": "User Id",
+            "type": "string"
+          },
+          "user_name": {
+            "title": "User Name",
+            "type": "string"
+          }
+        }
+      },
+      "UserChangePasswordRequest": {
+        "title": "UserChangePasswordRequest",
+        "type": "object",
+        "properties": {
+          "username": {
+            "title": "User name",
+            "type": "string",
+            "default": "hcss"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string",
+            "default": "Hyper123456"
+          },
+          "new_password": {
+            "title": "Password",
+            "type": "string",
+            "default": "Hyper1234567"
+          },
+          "owner_id": {
+            "title": "Owner of this user",
+            "type": "string",
+            "default": "TRANG_NGUYEN"
+          }
+        }
+      },
+      "UserForgetPasswordRequest": {
+        "title": "UserForgetPasswordRequest",
+        "type": "object",
+        "properties": {
+          "username": {
+            "title": "User name",
+            "type": "string",
+            "default": ""
+          },
+          "owner_id": {
+            "title": "Owner of this user",
+            "type": "string",
+            "default": "TRANG_NGUYEN"
+          }
+        }
+      },
+      "UserLoginRequest": {
+        "title": "UserLoginRequest",
+        "type": "object",
+        "properties": {
+          "username": {
+            "title": "User name",
+            "type": "string",
+            "default": "hcss"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string",
+            "default": "Hyper123456"
+          },
+          "owner_id": {
+            "title": "Owner of this user",
+            "type": "string",
+            "default": "TRANG_NGUYEN"
+          }
+        }
+      },
+      "UserRefreshTokenRequest": {
+        "title": "UserRefreshTokenRequest",
+        "type": "object",
+        "properties": {
+          "refresh_token": {
+            "title": "Refresh token to get new access token",
+            "type": "string",
+            "default": ""
+          },
+          "owner_id": {
+            "title": "Owner of this user",
+            "type": "string",
+            "default": "TRANG_NGUYEN"
+          }
+        }
+      },
+      "UserRegisterRequest": {
+        "title": "UserRegisterRequest",
+        "type": "object",
+        "properties": {
+          "user_type": {
+            "title": "User type: List of [STUDENT; PARENT; TEACHER; COLLABORATOR; AGENT]",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": ["STUDENT"]
+          },
+          "username": {
+            "title": "User name",
+            "type": "string",
+            "default": ""
+          },
+          "password": {
+            "title": "Password",
+            "type": "string",
+            "default": ""
+          },
+          "email": {
+            "title": "User email",
+            "type": "string",
+            "default": ""
+          },
+          "phone_number": {
+            "title": "User phone number",
+            "type": "string",
+            "default": ""
+          },
+          "gender": {
+            "title": "Gender type: 0: female; 1: male; 2: unknown",
+            "type": "integer",
+            "default": 2
+          },
+          "birth_date": {
+            "title": "Birth date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "family_name": {
+            "title": "Family name",
+            "type": "string",
+            "default": ""
+          },
+          "forename": {
+            "title": "First name",
+            "type": "string",
+            "default": ""
+          },
+          "country_id": {
+            "title": "Country ID",
+            "type": "string",
+            "default": ""
+          },
+          "ethnic_group": {
+            "title": "Ethnic group ID",
+            "type": "string",
+            "default": ""
+          },
+          "province_id": {
+            "title": "Province ID",
+            "type": "string",
+            "default": ""
+          },
+          "province_name": {
+            "title": "Province name",
+            "type": "string",
+            "default": ""
+          },
+          "district_id": {
+            "title": "District ID",
+            "type": "string",
+            "default": ""
+          },
+          "district_name": {
+            "title": "District name",
+            "type": "string",
+            "default": ""
+          },
+          "school_id": {
+            "title": "School ID",
+            "type": "string",
+            "default": ""
+          },
+          "school_name": {
+            "title": "School name",
+            "type": "string",
+            "default": ""
+          },
+          "class_id": {
+            "title": "Class ID",
+            "type": "string",
+            "default": ""
+          },
+          "class_name": {
+            "title": "Class Name",
+            "type": "string",
+            "default": ""
+          },
+          "grade_id": {
+            "title": "Grade ID",
+            "type": "string",
+            "default": ""
+          },
+          "address": {
+            "title": "Address user",
+            "type": "string",
+            "default": ""
+          },
+          "owner_id": {
+            "title": "Owner of this user",
+            "type": "string",
+            "default": "TRANG_NGUYEN"
+          }
+        }
+      },
+      "UserUpdateRequest": {
+        "title": "UserUpdateRequest",
+        "type": "object",
+        "properties": {
+          "user_type": {
+            "title": "User type: List of [STUDENT; PARENT; TEACHER; COLLABORATOR; AGENT]",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": ["STUDENT"]
+          },
+          "email": {
+            "title": "User email",
+            "type": "string",
+            "default": ""
+          },
+          "phone_number": {
+            "title": "User phone number",
+            "type": "string",
+            "default": ""
+          },
+          "gender": {
+            "title": "Gender type: 0: female; 1: male; 2: unknown",
+            "type": "integer",
+            "default": 2
+          },
+          "birth_date": {
+            "title": "Birth date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "family_name": {
+            "title": "Family name",
+            "type": "string",
+            "default": ""
+          },
+          "forename": {
+            "title": "First name",
+            "type": "string",
+            "default": ""
+          },
+          "country_id": {
+            "title": "Country ID",
+            "type": "string",
+            "default": ""
+          },
+          "ethnic_group": {
+            "title": "Ethnic group ID",
+            "type": "string",
+            "default": ""
+          },
+          "province_id": {
+            "title": "Province ID",
+            "type": "string",
+            "default": ""
+          },
+          "province_name": {
+            "title": "Province name",
+            "type": "string",
+            "default": ""
+          },
+          "district_id": {
+            "title": "District ID",
+            "type": "string",
+            "default": ""
+          },
+          "district_name": {
+            "title": "District name",
+            "type": "string",
+            "default": ""
+          },
+          "school_id": {
+            "title": "School ID",
+            "type": "string",
+            "default": ""
+          },
+          "school_name": {
+            "title": "School name",
+            "type": "string",
+            "default": ""
+          },
+          "class_id": {
+            "title": "Class ID",
+            "type": "string",
+            "default": ""
+          },
+          "class_name": {
+            "title": "Class Name",
+            "type": "string",
+            "default": ""
+          },
+          "grade_id": {
+            "title": "Grade ID",
+            "type": "string",
+            "default": ""
+          },
+          "address": {
+            "title": "Address user",
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["loc", "msg", "type"],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      },
+      "VerifyPaymentRequest": {
+        "title": "VerifyPaymentRequest",
+        "type": "object",
+        "properties": {
+          "product_transaction_id": {
+            "title": "Định danh của một giao dịch thanh toán",
+            "type": "string",
+            "default": ""
+          },
+          "pay_info": {
+            "title": "Thông tin thanh toán",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PayInfo"
+              }
+            ]
+          }
+        }
+      },
+      "VerifyPaymentResponse": {
+        "title": "VerifyPaymentResponse",
+        "type": "object",
+        "properties": {
+          "product_transaction_id": {
+            "title": "Định danh của một giao dịch thanh toán",
+            "type": "string",
+            "default": ""
+          },
+          "total_amount": {
+            "title": "Tổng tiền thanh toán",
+            "type": "integer",
+            "default": 0
+          },
+          "total_voucher_amount": {
+            "title": "Tổng tiền được giảm từ voucher",
+            "type": "integer",
+            "default": 0
+          },
+          "product_packages": {
+            "title": "Danh sách gói sản phẩm",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductPackageResponse"
+            },
+            "default": []
+          },
+          "pay_info": {
+            "title": "Thông tin thanh toán",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PayInfo"
+              }
+            ]
+          }
+        }
+      },
+      "VoucherResp": {
+        "title": "VoucherResp",
+        "type": "object",
+        "properties": {
+          "voucher_id": {
+            "title": "Định danh voucher",
+            "type": "string",
+            "default": ""
+          },
+          "value": {
+            "title": "Giá trị của voucher",
+            "type": "integer",
+            "default": 0
+          },
+          "monetary_unit": {
+            "title": "Đơn vị tiền tệ",
+            "type": "string",
+            "default": "VND"
+          }
+        }
+      }
+    }
+  }
+}

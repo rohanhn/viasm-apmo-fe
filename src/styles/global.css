@@ -1,0 +1,372 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+  color: #333;
+}
+/* Add this once in your CSS */
+.relative::after {
+  background-color: var(--tw-after-bg) !important;
+}
+@layer utilities {
+  .fixed-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    transition: all 0.25s;
+    touch-action: none;
+    background: #0000004d;
+    z-index: 20;
+  }
+}
+
+a, a:visited, a:active {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+  color: #EE3124;
+}
+
+
+/* slider */
+/* Remove border on focus for slick slider globally */
+.slick-slide:focus,
+.slick-dots li button:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+/* Remove border and outline when clicking (focusing) on slick-slider images */
+.slick-slide:focus img {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.slick-slide:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.home-slider .slick-slide:focus img,
+.slick-slide:focus > img {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.home-slider .slick-dots {
+    bottom: 30px; }
+    .home-slider .slick-dots li {
+      margin: 0 7px;
+      width: unset;
+      height: unset; }
+      .home-slider .slick-dots li.slick-active button {
+        background: transparent;
+        box-shadow: 0 0 0 2px #EE3124;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        opacity: 1;
+        width: 13px;
+        height: 13px; 
+      position: relative;}
+.home-slider .slick-dots li.slick-active button:before{
+  content: "";
+  background: #fff;
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+      .home-slider .slick-dots li button {
+        width: 9px;
+        height: 9px;
+        background: #FFF;
+        padding: 3px;
+        border-radius: 50%; }
+        .home-slider .slick-dots li button:before {
+          content: none; }
+  .home-slider .slick-disabled {
+    opacity: .25; }
+    .home-slider .slick-disabled:before {
+      opacity: 1; }
+
+.navigation {
+	 position: relative;
+}
+ .navigation.active .menu {
+	 display: block;
+}
+ .navigation .menu {
+	 position: absolute;
+	 width: 100%;
+	 /* border-radius: 8px; */
+	 box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+	 /* padding: 12px; */
+	 display: none;
+	 /* bottom: -95px; */
+	 z-index: 20;
+	 background: #fff;
+}
+ .navigation .menu li {
+	 list-style: none;
+}
+ .navigation .menu li a {
+	 display: block;
+	 font-size: 14px;
+}
+ .navigation .menu li a:hover , .navigation .menu li span:hover {
+    color: #EE3124;
+ }
+ .navigation .menu li button {
+	 padding: 0 !important;
+	 margin: 0 !important;
+}
+ .navigation.filter__navigation .menu {
+	 width: 280px;
+	 bottom: inherit;
+	 right: 0;
+}
+ @media (max-width: 480px) {
+	 .navigation.filter__navigation .menu {
+		 left: 0;
+	}
+}
+ .navigation.exam .menu {
+	 width: 120px;
+	 top: 20px;
+	 bottom: inherit;
+	 right: -15px;
+	 padding: 7px 5px;
+}
+
+input[type="radio"] + label span {
+  transition: background 0.2s, transform 0.2s;
+}
+
+input[type="radio"] + label span:hover,
+input[type="radio"] + label:hover span {
+  transform: scale(1.2);
+}
+
+input[type="radio"]:checked + label span {
+  background-color: theme("colors.danger.600");
+  box-shadow: 0px 0px 0px 2px white inset;
+}
+
+input[type="radio"]:checked + label span.green {
+  background-color: theme("colors.green.600");
+  box-shadow: 0px 0px 0px 2px white inset;
+}
+
+input[type="radio"]:checked + label {
+  @apply text-danger-600;
+}
+
+input[type="checkbox"]:checked + div {
+  @apply border-blue-500;
+}
+input[type="checkbox"]:checked + div svg {
+  @apply block;
+}
+.text-shadown {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.bg-home-1 {
+  background-position: 150px 100px;
+  @apply bg-[url(/assets/images/bg-home-1-deco.svg)] bg-contain bg-no-repeat;
+}
+
+.category-active {
+  @apply absolute bottom-[-16px] h-0 w-0 border-x-[16px] border-t-[16px] border-x-transparent;
+}
+
+.swiper-teacher .swiper-button-prev,
+.swiper-teacher .swiper-button-next {
+  width: 60px;
+  height: 60px;
+}
+.swiper-teacher .swiper-button-prev::after,
+.swiper-teacher .swiper-button-next::after {
+  font-size: 0;
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.swiper-teacher .swiper-button-next::after {
+  @apply bg-[url(/assets/images/next.svg)];
+}
+.swiper-teacher .swiper-button-prev::after {
+  @apply bg-[url(/assets/images/pre.svg)];
+}
+.tablist-1 {
+  position: relative;
+}
+.tablist-1::after {
+  content: " ";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 8px;
+  z-index: 0;
+  @apply bg-slate-200;
+}
+.tablist-1 .active {
+  @apply block w-full rounded-lg border-[1px] bg-white p-4 drop-shadow-sm relative border-slate-200 z-10;
+}
+.tablist-1 .active::after {
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  @apply border-slate-200;
+  bottom: -9px;
+  left: 50%;
+  transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateY(25px);
+}
+
+.tablist-2 {
+  position: relative;
+  display: flex;
+  @apply items-center justify-center  font-bold space-x-2 text-2xl;
+}
+.tablist-2 li {
+  @apply text-center p-2;
+}
+
+.tablist-2 .active {
+  @apply block rounded-lg border-[1px] px-8 bg-white drop-shadow-sm relative z-10 border-slate-600;
+}
+
+.tablist-2 .active::after {
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  @apply border-slate-500;
+  bottom: -4px;
+  left: 50%;
+  transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg) translateY(25px);
+}
+
+.table-cart tr {
+  @apply border-b-[1px];
+}
+.table-cart td,
+.table-cart th {
+  @apply px-2 py-2 align-top;
+}
+.table-cart th {
+  @apply whitespace-nowrap;
+}
+.ms-paging li.active button {
+  @apply bg-colorcs-E1E3E5;
+}
+
+.list-disc-danger li {
+  @apply before:mr-3 before:inline-block before:h-2 before:w-2 before:rounded-full before:bg-red-400 before:content-[''];
+}
+
+.react-datepicker-wrapper {
+  @apply w-full
+ }
+ 
+ .react-datepicker__input-container input {
+   @apply w-full rounded-full border-[1px] border-slate-600 px-3
+ }
+ 
+
+@layer components {
+  .custom-pagingnation {
+    outline: none;
+  }
+  .custom-pagingnation .swiper-pagination .swiper-pagination-bullet {
+    @apply w-3 h-3 bg-transparent border-2 border-slate-400 opacity-100;
+  }
+  .custom-pagingnation
+    .swiper-pagination
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    @apply bg-slate-400;
+  }
+}
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #e0cbcb;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+  }
+}
+
+/* .dieu-khoan ul {
+  list-style: dict;
+  margin: 32px;
+} */
+
+
+.test .swiper-wrapper {
+  margin: auto;
+  width: fit-content;
+}
+
+/* Custom scrollbar for horizontal scroll with 8px height */
+.custom-horizontal-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.custom-horizontal-scrollbar::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+.custom-horizontal-scrollbar::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.custom-horizontal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+
+@media (max-width: 985px) {
+  .bg-page-contact {
+    background-image: none !important;
+  }
+}
+.info{
+ overflow-wrap: break-word;
+ word-break: break-word;
+}
+
+.info a{
+  word-break: break-all;
+}
+.grecaptcha-badge {
+  display: none !important;
+}

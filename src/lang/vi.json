@@ -1,0 +1,307 @@
+{
+  "common": {
+    "logout": "Đăng xuất",
+    "login": "Đăng nhập",
+    "no_article": "Không có bài viết nào",
+    "view_all": "Xem tất cả",
+    "view_next": "Đọc tiếp",
+    "address": "Địa chỉ",
+    "phone": "Điện thoại",
+    "contact": "Liên hệ",
+    "contact_2": "Liên hệ hợp tác",
+    "search": "Tìm kiếm",
+    "no_data": "Chưa có dữ liệu",
+    "loading": "Đang tải..."
+  },
+  "grades": {
+    "placeholder": "Chọn khối",
+    "grade_1": "Lớp 1",
+    "grade_2": "Lớp 2",
+    "grade_3": "Lớp 3",
+    "grade_4": "Lớp 4",
+    "grade_5": "Lớp 5",
+    "grade_6": "Lớp 6",
+    "grade_7": "Lớp 7",
+    "grade_8": "Lớp 8",
+    "grade_9": "Lớp 9",
+    "grade_10": "Lớp 10",
+    "grade_11": "Lớp 11",
+    "grade_12": "Lớp 12"
+  },
+  "examination_rounds": {
+    "placeholder": "Chọn vòng thi"
+  },
+  "language": {
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt"
+  },
+  "header": {
+    "goToExam": "Vào thi",
+    "donate": "Tài trợ",
+    "slogan": "Sân chơi Toán học Việt Nam (VNMF) là hoạt động thuộc Chương trình trọng điểm quốc gia phát triển Toán học của Bộ Giáo dục và Đào tạo"
+  },
+  "footer":{
+    "title_1":"Đơn vị tổ chức",
+    "title_2":"VIASM - Viện Nghiên cứu cao cấp về Toán",
+    "title_3":"Trạng Nguyên Education - Tổ chức giáo dục Trạng Nguyên",
+    "address_1":"161 Phố Huỳnh Thúc Kháng, Phường Láng, Hà Nội",
+    "address_2":"Số 7, Ngõ 68 Phố Trung Kính, Phường Yên Hoà, Hà Nội"
+  },
+  "menu": {
+    "home": "Trang chủ",
+    "intro": "Giới thiệu",
+    "advisory_board": "Hội đồng chuyên môn",
+    "guide": "Thể lệ và lịch trình",
+    "schedule": "Hướng dẫn tổ chức",
+    "honor": "Vinh danh",
+    "news": "Tin tức",
+    "contact": "Liên hệ",
+    "album": "Album ảnh",
+    "intro.1": "Giới thiệu VNMF",
+    "intro.2": "Ban tổ chức",
+    "guide.1": "Thể lệ",
+    "guide.2": "Lịch trình",
+    "guide.3": "Tài liệu tham khảo",
+    "schedule.1": "Hướng dẫn tổ chức",
+    "schedule.2": "Tài liệu tập huấn",
+    "schedule.3": "Video hướng dẫn",
+    "news.1": "Tin tức",
+    "news.2": "Ảnh và video VNMF"
+  },
+  "home": {
+    "roundstep": {
+      "1": {
+        "title": "Khởi động",
+        "rounds": {
+          "1": "Bài thi thử online"
+        }
+      },
+      "2": {
+        "title": "Khám phá",
+        "rounds": {
+          "1": "Bài thi online số 1",
+          "2": "Bài thi online số 2",
+          "3": "Bài thi online số 3"
+        }
+      },
+      "3": {
+        "title": "Thử thách (Cấp Trường)",
+        "rounds": {
+          "1": "Bài thi online số 1",
+          "2": "Bài thi online số 2"
+        }
+      },
+      "4": {
+        "title": "Chinh phục (Cấp Tỉnh) ",
+        "rounds": {
+          "1": "Bài thi online"
+        }
+      },
+      "5": {
+        "title": "Tỏa sáng (Quốc gia)",
+        "rounds": {
+          "1": "Bài thi online",
+          "2": "Bài thi tự luận"
+        }
+      }
+    },
+    "focus": {
+      "title": "Tin tức nổi bật"
+    },
+    "reward_chart": {
+      "no_data": "Chưa có bảng xếp hạng",
+      "btn_explore": "Xem thêm",
+      "title": "Bảng vinh danh",
+      "text": "Bảng xếp hạng",
+      "description": "Lưu ý: BXH có thể chưa được cập nhật, thứ hạng hiện tại có thể chưa phản ánh kết quả mới nhất."
+    },
+    "banner": {
+      "btn_explore": "Khám phá ngay"
+    }
+  },
+  "detail": {
+    "title": "Chi tiết Tin tức",
+    "related": "Tin tức liên quan",
+    "read_more": "Đọc thêm",
+    "share": "Chia sẻ",
+    "share_to_facebook": "Chia sẻ lên Facebook",
+    "share_to_zalo": "Chia sẻ lên Zalo",
+    "share_to_linkedin": "Chia sẻ lên LinkedIn",
+    "author": "Tác giả",
+    "views": "lượt xem",
+    "likes": "lượt thích",
+    "shares": "lượt chia sẻ",
+    "like": "Thích"
+  },
+  "news":{
+    "1": "Tin tức về VNMF",
+    "2": "Tin tức Toán học"
+  },
+  "rules": {
+    "title": "Thể lệ và lịch trình",
+    "home": "Trang chủ",
+    "rules": "Thể lệ",
+    "schedule": "Lịch trình",
+    "dowload": "Tải xuống",
+    "rulesSupporting": [
+      {
+        "text": "Tài liệu tham khảo",
+        "button": "Tải xuống"
+      },
+      {
+        "text": "Video hướng dẫn",
+        "button": "Xem ngay"
+      }
+    ]
+  },
+  "about": {
+    "title": "Giới thiệu Sân chơi Toán học Việt Nam (VNMF)"
+  },
+  "organizer": {
+    "title": "Ban tổ chức cấp Quốc gia"
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "head_title": "Hãy để đội ngũ của VNMF tư vấn cho bạn",
+    "head_title_sponsorship": "Vui lòng liên hệ với Ban tổ chức để được hỗ trợ",
+    "title_contact": [
+      {
+        "contact": "Liên hệ"
+      },
+      {
+        "contact": "Điện thoại hỗ trợ"
+      },
+      {
+        "contact": "ĐT hỗ trợ Thầy, Cô, Sở GDĐT"
+      }
+    ],
+    "letter_title": "Bạn cần hỗ trợ",
+    "letter_text1": "VNMF rất hân hạnh được hỗ trợ bạn, hãy để lại thông tin cho chúng tôi nhé.",
+    "letter_text2": "Yêu cầu của bạn sẽ được xử lý và phản hồi trong thời gian sớm nhất.",
+    "letter_name": "Họ và tên *",
+    "letter_email": "Email *",
+    "letter_message": "Lời nhắn *",
+    "letter_sending": "Đang gửi...",
+    "letter_send": "Gửi lời nhắn",
+    "error_name": "Họ và tên là bắt buộc*",
+    "error_email": "Email là bắt buộc*",
+    "error_email_format": "Định dạng email không hợp lệ*",
+    "error_message": "Bạn cần nhập lời nhắn*",
+    "toastSuccess": "Gửi liên hệ thành công!",
+    "toastError": "Gửi liên hệ thất bại, vui lòng thử lại!",
+    "toastWarning1": "Có lối xảy ra:",
+    "toastWarning2": "Không xác định"
+  },
+  "organize_guide": {
+    "title": "Hướng dẫn tổ chức",
+    "button_video": "Video hướng dẫn",
+    "button_document": "Tài liệu tham khảo",
+    "button_video_download": "Xem ngay",
+    "button_document_download": "Tải xuống",
+    "1": {
+      "title": "Hướng dẫn tổ chức",
+      "sub_title_1": "Hướng dẫn cấp Trường",
+      "sub_title_2": "Hướng dẫn cấp Tỉnh",
+      "sub_title_3": "Hướng dẫn cấp Quốc gia"
+    },
+    "2": {
+      "title": "Tài liệu tập huấn"
+    },
+    "3": {
+      "title": "Video hướng dẫn"
+    }
+  },
+  "academic_council": {
+    "title": "Hội đồng chuyên môn"
+  },
+  "partner_unit": {
+    "title": "Đơn vị liên kết",
+    "unitArr": [
+      {
+        "unit": "Đơn vị tổ chức",
+        "title_unit": "VIASM - Viện nghiên cứu cao cấp về Toán",
+        "info": [
+          {
+            "infoTitle": "Địa chỉ:",
+            "text": "161 Phố Huỳnh Thúc Kháng, Phường Láng, Hà Nội"
+            
+          },
+          {
+            "infoTitle": "Điện thoại:"
+            
+          },
+          {
+            "infoTitle": "Email:"
+            
+          },
+          {
+            "infoTitle": "Facebook:"
+            
+          },
+          {
+            "infoTitle": "Web:"
+            
+          }
+        ]
+      },
+      {
+        "unit": "Đơn vị đồng tổ chức",
+        "title_unit": "TNMath",
+        "info": [
+          {
+            "infoTitle": "Địa chỉ:",
+            "text": "Nhà số 7, Ngõ 68 Trung Kính, Cầu Giấy, Hà Nội"
+          },
+          {
+            "infoTitle": "Điện thoại:"
+            
+          },
+          {
+            "infoTitle": "Email:"
+            
+          },
+          {
+            "infoTitle": "Facebook:"
+          },
+          {
+            "infoTitle": "Web:"
+          },
+          {
+            "infoTitle": "Zalo:"
+            
+          },
+          {
+            "infoTitle": "Tiktok:"
+            
+          }
+        ]
+      }
+    ]
+  },
+  "album": {
+    "title": "Album ảnh",
+    "related_title": "Album ảnh liên quan"
+  },
+
+  "sponsorship": {
+    "title": "Tài trợ",
+    "menu_tabs": [
+      {"label": "Mục đích tài trợ"},
+      {"label": "Lợi ích cho nhà tài trợ"},
+      { "label": "Danh sách nhà tài trợ" },
+      { "label": "Phương thức tài trợ" }
+    ],
+    "text1": "VI-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum -Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut Odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam",
+    "text2":"VI-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum -Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut Odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam",
+    "list_sponsor":[
+      {"label": "Nhà tài trợ kim cương"},
+      {"label": "Nhà tài trợ vàng"},
+      {"label": "Nhà tài trợ bạc"},
+      {"label": "Nhà tài trợ đồng"}
+    ],
+    "item_method": [
+      { "title": "Khai báo mức tài trợ"},
+      { "title": "Nội dung chuyển khoản"}
+    ]
+  }
+}
