@@ -85,24 +85,34 @@ export default function RegulationsPage() {
             </p>
 
             <p>
-              Contestants should not have formally enrolled at a university and
-              must be younger than 20 years of age on the 1st July of the year
-              of the contest.
+              Contestants should not have formally enrolled at a university (or
+              equivalent post-secondary institution) and they must be younger
+              than 20 years of age on the 1st July of the year of the contest.
             </p>
 
             <p>
               The APMO is held in the afternoon of the second Monday of March
               for participating countries in the North and South Americas, and
               in the morning of the second Tuesday of March for participating
-              countries in the Western Pacific and Asia.
+              countries on the Western Pacific and in Asia.
             </p>
 
             <p>
-              Contest questions are collected at the end of the APMO and are
-              kept confidential until the Senior Coordinating Country posts them
-              on the official APMO website.
+              The contest questions are to be collected from the contestants at
+              the end of the APMO and are to be kept confidential until the
+              Senior Coordinating Country posts them on the official APMO
+              website. Each exam paper must contain a written legend, warning
+              the students not to discuss the problems over the internet until
+              that date.
             </p>
-
+            <p>
+              All APMO contestants will receive a Certificate of Award,
+              Honourable Mention or Representation.
+            </p>
+            <p>
+              The maximum total number of Award certificates per edition should
+              be <b>(n+1)/2</b>, unless ties in the limiting cut-off happen.
+            </p>
             {/* Award Section */}
             <div className="bg-blue-50 border border-blue-100 rounded-lg p-6">
               <h3 className="font-semibold text-gray-700 mb-3">Awards</h3>
