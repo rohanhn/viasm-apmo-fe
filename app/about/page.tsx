@@ -1,9 +1,9 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable import/extensions */
-import { FaStar } from "react-icons/fa6";
-import { LuUser } from "react-icons/lu";
-import { RxFileText } from "react-icons/rx";
-import { TfiCup } from "react-icons/tfi";
+import { FaStar } from 'react-icons/fa6';
+import { LuUser } from 'react-icons/lu';
+import { RxFileText } from 'react-icons/rx';
+import { TfiCup } from 'react-icons/tfi';
 
 export default function AboutPage() {
   return (

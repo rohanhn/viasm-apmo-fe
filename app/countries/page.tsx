@@ -65,20 +65,23 @@ export default async function CountriesPage({
   return (
     <div className="bg-[#F7F9FC] min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-white to-blue-50 py-10">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h1 className="text-4xl font-semibold text-gray-800">
-            Participating Countries
-          </h1>
-
-          <p className="text-gray-500 mt-4">
+      <section
+        className="relative bg-cover bg-center bg-no-repeat py-20"
+        style={{
+          backgroundImage: 'url(/assets/images/apmo/03_country_map.png)',
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
+          <h1 className="text-4xl font-semibold">Participating Countries</h1>
+          <p className="mt-4 text-lg max-w-2xl mx-auto">
             Explore all APMO participating nations.
           </p>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="max-w-6xl mx-auto px-6 pb-5 grid md:grid-cols-3 gap-6">
+      <section className="max-w-6xl mx-auto px-6 pb-5 grid md:grid-cols-3 gap-6 mt-10">
         <div className="bg-white p-6 rounded-xl shadow-sm border">
           <p className="text-gray-500">Countries</p>
           <h3 className="text-3xl font-semibold text-blue-600">

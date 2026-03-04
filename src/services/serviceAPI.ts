@@ -283,14 +283,115 @@ export const serviceAPI = {
       'pagination[page]': page,
       'pagination[pageSize]': pageSize,
     });
-    
+
     return serviceClient
       .get(`/api/countries?${query}`)
       .then((res) => {
-        return res?.data || { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 } } };
+        return (
+          res?.data || {
+            data: [],
+            meta: {
+              pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+            },
+          }
+        );
       })
       .catch(() => {
-        return { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 } } };
+        return {
+          data: [],
+          meta: {
+            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+          },
+        };
+      });
+  },
+
+  getRegulations(): Promise<any> {
+    const query = qs.stringify({
+      populate: '*',
+    });
+    return serviceClient
+      .get(`/api/regulations?${query}`)
+      .then((res) => {
+        console.log('Regulations data:', res.data);
+        return res?.data;
+      })
+      .catch((error) => {
+        console.error('Error fetching regulations:', error);
+        return {
+          data: [],
+          meta: {
+            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+          },
+        };
+      });
+  },
+
+  getTimelines(page: number = 1, pageSize: number = 25): Promise<any> {
+    const query = qs.stringify({
+      populate: '*',
+      pagination: {
+        page,
+        pageSize,
+      },
+      sort: ['year.name:desc'],
+    });
+    return serviceClient
+      .get(`/api/timelines?${query}`)
+      .then((res) => {
+        console.log('Timeline data:', res.data);
+        return res?.data;
+      })
+      .catch((error) => {
+        console.error('Error fetching timelines:', error);
+        return {
+          data: [],
+          meta: {
+            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+          },
+        };
+      });
+  },
+
+  getProblemStatements(): Promise<any> {
+    const query = qs.stringify({
+      populate: '*',
+    });
+    return serviceClient
+      .get(`/api/problem-statements?${query}`)
+      .then((res) => {
+        console.log('Problem Statements data:', res.data);
+        return res?.data;
+      })
+      .catch((error) => {
+        console.error('Error fetching problem statements:', error);
+        return {
+          data: [],
+          meta: {
+            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+          },
+        };
+      });
+  },
+
+  getProblemSolutions(): Promise<any> {
+    const query = qs.stringify({
+      populate: '*',
+    });
+    return serviceClient
+      .get(`/api/problem-solutions?${query}`)
+      .then((res) => {
+        console.log('Problem Solutions data:', res.data);
+        return res?.data;
+      })
+      .catch((error) => {
+        console.error('Error fetching problem solutions:', error);
+        return {
+          data: [],
+          meta: {
+            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+          },
+        };
       });
   },
 };

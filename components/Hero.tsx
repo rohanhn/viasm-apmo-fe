@@ -9,7 +9,6 @@ export default function Hero() {
       <div className="">
         {/* Hero Banner Container */}
         <div className="relative w-full h-[600px] overflow-hidden bg-[url('/assets/images/apmo/01_hero_world_map.png')] bg-contain bg-no-repeat bg-[100%_-200px]">
-
           {/* Content Overlay */}
           <div className="relative z-10 flex flex-col justify-center items-start h-full">
             <div className="max-w-2xl">

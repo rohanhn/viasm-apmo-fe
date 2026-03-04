@@ -1,19 +1,81 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/button-has-type */
+
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import MathDisplay from '@/components/MathDisplay';
+import { serviceAPI } from '@/src/services/serviceAPI';
+
+interface Regulation {
+  id: number;
+  year_name: {
+    name: string;
+  };
+  file: {
+    url: string;
+    name: string;
+  };
+}
+
 export default function RegulationsPage() {
-  const years = [
-    2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016,
-  ];
+  const [regulations, setRegulations] = useState<Regulation[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Default years list from 2016 to 2026
+  const defaultYears = Array.from({ length: 11 }, (_, i) => 2026 - i); // [2026, 2025, 2024, ..., 2016]
+
+  useEffect(() => {
+    const fetchRegulations = async () => {
+      try {
+        setLoading(true);
+        const response = await serviceAPI.getRegulations();
+        setRegulations(response.data || []);
+        setError(null);
+      } catch (err) {
+        setError('Failed to load regulations');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRegulations();
+  }, []);
+
+  const handleYearClick = (year: number) => {
+    const matchingRegulation = regulations.find(
+      (reg) => reg.year_name.name === year.toString()
+    );
+
+    if (matchingRegulation) {
+      const baseUrl = 'https://viasm-dev.trangnguyen.edu.vn';
+      const fullUrl = matchingRegulation.file.url.startsWith('http')
+        ? matchingRegulation.file.url
+        : `${baseUrl}${matchingRegulation.file.url}`;
+      window.open(fullUrl, '_blank');
+    }
+  };
+
+  const getRegulationForYear = (year: number) => {
+    return regulations.find((reg) => reg.year_name.name === year.toString());
+  };
 
   return (
     <div className="bg-[#F7F9FC] min-h-screen">
-      {/* HERO */}
-      <section className="bg-gradient-to-br from-white to-blue-50 py-16 border-b">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h1 className="text-4xl font-semibold text-gray-800">
-            APMO Regulations
-          </h1>
-
-          <p className="mt-4 text-gray-500 max-w-xl mx-auto">
+      {/* Banner with Image */}
+      <section
+        className="relative bg-cover bg-center bg-no-repeat py-20"
+        style={{
+          backgroundImage: 'url(/assets/images/apmo/03_country_map.png)',
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
+          <h1 className="text-4xl font-semibold">APMO Regulations</h1>
+          <p className="mt-4 text-lg max-w-2xl mx-auto">
             Download the full text of the APMO Regulations by year or read the
             outline of the contest regulations.
           </p>
@@ -35,31 +97,44 @@ export default function RegulationsPage() {
             </p>
 
             <div className="grid grid-cols-3 gap-3 mt-6">
-              {years.map((year) => (
-                <button
-                  key={year}
-                  className="bg-blue-600 text-white text-sm py-2 rounded-lg hover:bg-blue-700 transition"
-                >
-                  {year}
-                </button>
-              ))}
-            </div>
-          </div>
+              {loading ? (
+                // Skeleton loading for year buttons
+                Array.from({ length: 9 }).map((_, index) => (
+                  <div
+                    key={index}
+                    className="bg-gray-200 animate-pulse rounded-lg py-2 h-8"
+                  />
+                ))
+              ) : error ? (
+                <div className="col-span-3 text-center py-4 text-red-500">
+                  {error}
+                </div>
+              ) : (
+                defaultYears.map((year) => {
+                  const regulation = getRegulationForYear(year);
+                  const hasData = Boolean(regulation);
 
-          {/* Download Latest */}
-          <div className="bg-white p-6 rounded-xl border shadow-sm">
-            <div className="flex items-center gap-4">
-              <div className="bg-blue-100 p-3 rounded-lg">⬇️</div>
-
-              <div>
-                <p className="font-medium text-gray-700">
-                  Download current regulations
-                </p>
-
-                <button className="text-blue-600 text-sm hover:underline">
-                  Download PDF
-                </button>
-              </div>
+                  return (
+                    <button
+                      key={year}
+                      onClick={() => hasData && handleYearClick(year)}
+                      className={`text-white text-sm py-2 rounded-lg transition ${
+                        hasData
+                          ? 'bg-primary-500 hover:bg-primary-400 cursor-pointer'
+                          : 'bg-gray-400 cursor-not-allowed'
+                      }`}
+                      title={
+                        hasData
+                          ? `Download ${regulation?.file.name}`
+                          : `${year} - Not available`
+                      }
+                      disabled={!hasData}
+                    >
+                      {year}
+                    </button>
+                  );
+                })
+              )}
             </div>
           </div>
         </aside>
@@ -111,7 +186,14 @@ export default function RegulationsPage() {
             </p>
             <p>
               The maximum total number of Award certificates per edition should
-              be <b>(n+1)/2</b>, unless ties in the limiting cut-off happen.
+              be <MathDisplay latex="\frac{n+1}{2}" />, unless ties in the
+              limiting cut-off happen.
+            </p>
+            <p>
+              Let <MathDisplay latex="m" /> and <MathDisplay latex="\sigma" />{' '}
+              be the mean and standard deviation of the individual scores for
+              each year. Let <MathDisplay latex="r" /> be the rank of a student
+              within his/her country. Then the student is awarded:
             </p>
             {/* Award Section */}
             <div className="bg-blue-50 border border-blue-100 rounded-lg p-6">
@@ -119,23 +201,29 @@ export default function RegulationsPage() {
 
               <ul className="list-disc pl-6 space-y-2">
                 <li>
-                  A Gold Award if the obtained score is at least
-                  <b> m + σ </b> and r = 1.
+                  A Gold Award if the obtained score is at least{' '}
+                  <MathDisplay latex="m+\sigma" /> and{' '}
+                  <MathDisplay latex="r=1" />.
                 </li>
 
                 <li>
-                  A Silver Award if the obtained score is at least
-                  <b> m + σ/2 </b>.
+                  A Silver Award if the obtained score is at least{' '}
+                  <MathDisplay latex="m+\frac{\sigma}{3}" /> and{' '}
+                  <MathDisplay latex="r\leq 3" />.
                 </li>
 
                 <li>
-                  A Bronze Award if the obtained score is at least
-                  <b> m − σ/2 </b>.
+                  A Bronze Award if the obtained score is at least{' '}
+                  <MathDisplay latex="m-\frac{\sigma}{3}" /> and{' '}
+                  <MathDisplay latex="r\leq 7" />.
                 </li>
 
                 <li>
-                  Honourable Mention for outstanding performance on individual
-                  questions.
+                  An Honourable Mention if the student has not received an
+                  Award, but who has performed creditably according to some
+                  criteria determined each year; for example, a contestant who
+                  has obtained a perfect score of 7 for at least one question or
+                  has obtained scores of 5 or 6 for at least two questions.
                 </li>
               </ul>
             </div>
