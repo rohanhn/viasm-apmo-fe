@@ -43,3 +43,31 @@ declare module 'react-i18next' {
     t?: TFunction;
   }
 }
+
+// Country API Types
+export interface Country {
+  id: number;
+  documentId: string;
+  name: string;
+  code: string;
+  active: boolean;
+  contact: string | null;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  localizations: any[];
+}
+
+export interface CountryResponse {
+  data: Country[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}

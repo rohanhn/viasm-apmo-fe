@@ -2,6 +2,9 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+
 export const metadata: Metadata = {
   title: 'APMO - Asian Pacific Mathematics Olympiad',
   description:
@@ -15,7 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

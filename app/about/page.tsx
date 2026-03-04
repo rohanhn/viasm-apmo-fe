@@ -1,18 +1,13 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable import/extensions */
-import { FaStar } from 'react-icons/fa6';
-import { LuUser } from 'react-icons/lu';
-import { RxFileText } from 'react-icons/rx';
-import { TfiCup } from 'react-icons/tfi';
-
-import Footer from '@/components/Footer';
-import Navbar from '@/components/Navbar';
+import { FaStar } from "react-icons/fa6";
+import { LuUser } from "react-icons/lu";
+import { RxFileText } from "react-icons/rx";
+import { TfiCup } from "react-icons/tfi";
 
 export default function AboutPage() {
   return (
     <>
-      <Navbar />
-
       {/* Hero Section */}
       <section className="max-w-6xl mx-auto px-6 mb-[-100px]">
         <div className="relative w-full h-[350px] overflow-hidden bg-[url('/assets/images/apmo/01_hero_world_map.png')] bg-contain bg-no-repeat bg-[102%_-100px]">
@@ -174,8 +169,6 @@ export default function AboutPage() {
           </button>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

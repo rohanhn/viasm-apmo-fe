@@ -276,4 +276,21 @@ export const serviceAPI = {
         return { data: { data: { banner: [] } } };
       });
   },
+
+  getCountries(page: number = 1, pageSize: number = 25): Promise<any> {
+    const query = qs.stringify({
+      populate: '*',
+      'pagination[page]': page,
+      'pagination[pageSize]': pageSize,
+    });
+    
+    return serviceClient
+      .get(`/api/countries?${query}`)
+      .then((res) => {
+        return res?.data || { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 } } };
+      })
+      .catch(() => {
+        return { data: [], meta: { pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 } } };
+      });
+  },
 };
