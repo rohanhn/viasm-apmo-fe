@@ -306,6 +306,49 @@ export const serviceAPI = {
       });
   },
 
+  getCountryRankings(countryCode?: string): Promise<any> {
+    const filters: any = {};
+    
+    if (countryCode) {
+      filters.country = {
+        code: {
+          $eq: countryCode.toUpperCase(),
+        },
+      };
+    }
+
+    const query = qs.stringify({
+      populate: {
+        country: true,
+        year: true,
+      },
+      filters,
+      sort: ['year.name:desc'], // Sort by year descending (newest first)
+    });
+
+    return serviceClient
+      .get(`/api/country-rankings?${query}`)
+      .then((res) => {
+        return (
+          res?.data || {
+            data: [],
+            meta: {
+              pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+            },
+          }
+        );
+      })
+      .catch((error) => {
+        console.error('Error fetching country rankings:', error);
+        return {
+          data: [],
+          meta: {
+            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+          },
+        };
+      });
+  },
+
   getRegulations(): Promise<any> {
     const query = qs.stringify({
       populate: '*',

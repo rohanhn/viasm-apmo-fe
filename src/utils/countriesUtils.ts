@@ -1,5 +1,6 @@
-import { countriesData } from './countriesData';
 import type { Country, CountryResponse } from '@/src/types';
+
+import { countriesData } from './countriesData';
 
 export interface CountryWithResults extends Country {
   results: string;
@@ -70,7 +71,7 @@ export function getActiveCountriesCount(): number {
 export function getCountryByCode(code: string): Country | undefined {
   const csvCountry = countriesData.find((country) => country.code === code);
   if (!csvCountry) return undefined;
-  
+
   return {
     id: 1,
     documentId: `country_${csvCountry.code.toLowerCase()}`,
@@ -89,18 +90,20 @@ export function getCountryByCode(code: string): Country | undefined {
 
 // Get all countries (no pagination)
 export function getAllCountries(): Country[] {
-  return countriesData.map((item, index) => ({
-    id: index + 1,
-    documentId: `country_${item.code.toLowerCase()}`,
-    name: item.country,
-    code: item.code,
-    active: item.status === 'Active',
-    contact: item.representative || null,
-    slug: item.country.toLowerCase().replace(/\s+/g, '-'),
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    publishedAt: new Date().toISOString(),
-    locale: 'en',
-    localizations: [],
-  })).sort((a, b) => a.name.localeCompare(b.name));
+  return countriesData
+    .map((item, index) => ({
+      id: index + 1,
+      documentId: `country_${item.code.toLowerCase()}`,
+      name: item.country,
+      code: item.code,
+      active: item.status === 'Active',
+      contact: item.representative || null,
+      slug: item.country.toLowerCase().replace(/\s+/g, '-'),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      publishedAt: new Date().toISOString(),
+      locale: 'en',
+      localizations: [],
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }

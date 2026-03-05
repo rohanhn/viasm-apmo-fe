@@ -5,6 +5,7 @@
 
 'use client';
 
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
@@ -267,9 +268,12 @@ function TimelineContent() {
                           <td className="p-4">{item.ACC}</td>
                           <td className="p-4">{item.MC}</td>
                           <td className="p-4">
-                            <button className="text-blue-600 hover:text-blue-800 text-sm hover:underline">
+                            <Link
+                              href={`/year_report/${item.year.name}`}
+                              className="text-blue-600 hover:text-blue-800 text-sm hover:underline"
+                            >
                               View Results
-                            </button>
+                            </Link>
                           </td>
                         </tr>
                       ))

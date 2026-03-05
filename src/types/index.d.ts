@@ -71,3 +71,47 @@ export interface CountryResponse {
     };
   };
 }
+
+// Country Rankings API Types
+export interface Year {
+  id: number;
+  documentId: string;
+  name: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+}
+
+export interface CountryRanking {
+  id: number;
+  documentId: string;
+  rank: number;
+  contestants_num: number;
+  total_score: number;
+  gold_cut: number;
+  silver_cut: number;
+  bronze_cut: number;
+  honorable_mentions: number;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  year: Year;
+  country: Country;
+  localizations: any[];
+}
+
+export interface CountryRankingsResponse {
+  data: CountryRanking[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}

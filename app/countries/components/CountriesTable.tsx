@@ -2,6 +2,7 @@
 
 'use client';
 
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
@@ -123,9 +124,12 @@ export default function CountriesTable({
                     )}
                   </td>
                   <td className="p-4">
-                    <button className="text-blue-600 hover:underline">
+                    <Link 
+                      href={`/country_report/${country.code}/all`}
+                      className="text-blue-600 hover:underline hover:text-blue-800 transition-colors"
+                    >
                       View
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               ))
