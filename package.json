@@ -39,6 +39,7 @@
     "i18next": "^25.3.2",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
+    "mathlive": "^0.108.3",
     "next": "^14.2.35",
     "next-cookies": "2.0.3",
     "next-seo": "^6.0.0",

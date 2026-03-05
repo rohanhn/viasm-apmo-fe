@@ -64,7 +64,7 @@ export default function RegulationsPage() {
   };
 
   return (
-    <div className="bg-[#F7F9FC] min-h-screen">
+    <div className="bg-[#F7F9FC]">
       {/* Banner with Image */}
       <section
         className="relative bg-cover bg-center bg-no-repeat py-20"
@@ -74,8 +74,10 @@ export default function RegulationsPage() {
       >
         <div className="absolute inset-0 bg-black bg-opacity-50" />
         <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
-          <h1 className="text-4xl font-semibold">APMO Regulations</h1>
-          <p className="mt-4 text-lg max-w-2xl mx-auto">
+          <h1 className="sm:text-4xl text-3xl font-semibold">
+            APMO Regulations
+          </h1>
+          <p className="sm:mt-4 mt-2 text-md sm:text-lg max-w-2xl mx-auto">
             Download the full text of the APMO Regulations by year or read the
             outline of the contest regulations.
           </p>
@@ -83,11 +85,11 @@ export default function RegulationsPage() {
       </section>
 
       {/* MAIN LAYOUT */}
-      <section className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-[320px_1fr] gap-8">
+      <section className="max-w-6xl mx-auto sm:px-6 sm:py-12 px-4 py-4 grid md:grid-cols-[320px_1fr] sm:gap-8 gap-4">
         {/* LEFT SIDEBAR */}
         <aside className="space-y-6">
           {/* Download Years */}
-          <div className="bg-white p-6 rounded-xl border shadow-sm">
+          <div className="bg-white sm:p-6 p-4 rounded-xl border shadow-sm">
             <h3 className="font-semibold text-lg text-gray-700">
               Full-text by year
             </h3>
@@ -140,12 +142,12 @@ export default function RegulationsPage() {
         </aside>
 
         {/* RIGHT CONTENT */}
-        <main className="bg-white rounded-xl border shadow-sm p-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+        <main className="bg-white rounded-xl border shadow-sm sm:p-8 p-4">
+          <h2 className="text-2xl font-semibold text-gray-800 sm:mb-6 mb-2">
             Outline of regulations
           </h2>
 
-          <div className="space-y-6 text-gray-600 leading-relaxed">
+          <div className="sm:space-y-6 space-y-2 text-gray-600 leading-relaxed max-[767px]:text-sm">
             <p>
               The APMO contest consists of one four-hour paper consisting of
               five questions of varying difficulty and each having a maximum
@@ -196,7 +198,7 @@ export default function RegulationsPage() {
               within his/her country. Then the student is awarded:
             </p>
             {/* Award Section */}
-            <div className="bg-blue-50 border border-blue-100 rounded-lg p-6">
+            <div className="bg-blue-50 border border-blue-100 rounded-lg sm:p-6 p-4">
               <h3 className="font-semibold text-gray-700 mb-3">Awards</h3>
 
               <ul className="list-disc pl-6 space-y-2">

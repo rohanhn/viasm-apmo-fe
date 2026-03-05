@@ -76,7 +76,7 @@ export default function ProblemsPage() {
   };
 
   return (
-    <div className="bg-[#F7F9FC] min-h-screen">
+    <div className="bg-[#F7F9FC]">
       {/* Hero Banner */}
       <section
         className="relative bg-cover bg-no-repeat py-20"
@@ -87,15 +87,17 @@ export default function ProblemsPage() {
       >
         <div className="absolute inset-0 bg-black bg-opacity-50" />
         <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
-          <h1 className="text-4xl font-semibold">Problems & Solutions</h1>
-          <p className="mt-4 text-lg max-w-2xl mx-auto">
+          <h1 className="sm:text-4xl text-3xl font-semibold">
+            Problems & Solutions
+          </h1>
+          <p className="sm:mt-4 mt-2 text-md sm:text-lg max-w-2xl mx-auto">
             Explore APMO problems and official solutions since 1989
           </p>
         </div>
       </section>
 
       {/* Main Content - Two Column Layout */}
-      <section className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8">
+      <section className="max-w-6xl mx-auto sm:px-6 px-4 sm:py-12 py-4 grid md:grid-cols-2 sm:gap-8 gap-4">
         {/* Left Column - Problem Statements */}
         <div className="bg-white rounded-xl shadow-sm border p-4">
           <div className="mb-4">

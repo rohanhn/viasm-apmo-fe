@@ -8,8 +8,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-textPrimary text-white">
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
+      <div className="max-w-6xl mx-auto sm:px-6 sm:py-16 px-4 py-8">
+        <div className="grid md:grid-cols-4 gap-8 sm:mb-12 mb-6">
           {/* Brand Section */}
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-x-2">
@@ -124,8 +124,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-gray-700 sm:pt-8 pt-4 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm max-sm:text-center">
             © {currentYear} Asian Pacific Mathematics Olympiad. All rights
             reserved.
           </p>

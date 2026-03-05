@@ -52,6 +52,31 @@ function TimelineContent() {
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const searchQuery = searchParams.get('search') || '';
 
+  // Stats data array
+  const statsData = [
+    {
+      id: 1,
+      label: 'Total Records',
+      value: pagination.total,
+      className: 'sm:p-6 p-4',
+    },
+    {
+      id: 2,
+      label: 'First APMO',
+      value: 1989,
+      className: 'p-6',
+    },
+    {
+      id: 3,
+      label: 'Latest Year',
+      value:
+        timelineData.length > 0
+          ? Math.max(...timelineData.map((d) => parseInt(d.year.name)))
+          : 2026,
+      className: 'p-6',
+    },
+  ];
+
   useEffect(() => {
     setSearchTerm(searchQuery);
   }, [searchQuery]);
@@ -110,7 +135,7 @@ function TimelineContent() {
   };
 
   return (
-    <div className="bg-[#F7F9FC] min-h-screen">
+    <div className="bg-[#F7F9FC]">
       {/* Banner with Image */}
       <section
         className="relative bg-cover bg-center bg-no-repeat py-20"
@@ -120,8 +145,8 @@ function TimelineContent() {
       >
         <div className="absolute inset-0 bg-black bg-opacity-50" />
         <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
-          <h1 className="text-4xl font-semibold">Timeline APMO</h1>
-          <p className="mt-4 text-lg max-w-2xl mx-auto">
+          <h1 className="sm:text-4xl text-3xl font-semibold">Timeline APMO</h1>
+          <p className="sm:mt-4 mt-2 text-md sm:text-lg max-w-2xl mx-auto">
             Yearly participation and awards data for the Asian Pacific
             Mathematics Olympiad.
           </p>
@@ -129,7 +154,7 @@ function TimelineContent() {
       </section>
 
       {/* Notification Banner */}
-      <section className="max-w-6xl mx-auto px-6 pt-8">
+      <section className="max-w-6xl mx-auto sm:px-6 sm:pt-8 px-4 pt-4">
         <div className="bg-blue-100 border border-blue-200 rounded-lg p-4 shadow-sm">
           <div className="flex items-center justify-center gap-3 text-blue-800">
             <span className="font-medium">
@@ -139,31 +164,22 @@ function TimelineContent() {
         </div>
       </section>
       {/* Stats */}
-      <section className="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border">
-          <p className="text-gray-500">Total Records</p>
-          <h3 className="text-3xl font-semibold text-blue-600">
-            {pagination.total}
-          </h3>
-        </div>
-
-        <div className="bg-white p-6 rounded-xl shadow-sm border">
-          <p className="text-gray-500">First APMO</p>
-          <h3 className="text-3xl font-semibold text-blue-600">1989</h3>
-        </div>
-
-        <div className="bg-white p-6 rounded-xl shadow-sm border">
-          <p className="text-gray-500">Latest Year</p>
-          <h3 className="text-3xl font-semibold text-blue-600">
-            {timelineData.length > 0
-              ? Math.max(...timelineData.map((d) => parseInt(d.year.name)))
-              : 2026}
-          </h3>
-        </div>
+      <section className="max-w-6xl mx-auto sm:px-6 sm:pt-8 px-4 pt-4 grid md:grid-cols-3 sm:gap-6 gap-4 mb-4">
+        {statsData.map((stat) => (
+          <div
+            key={stat.id}
+            className={`bg-white ${stat.className} rounded-xl shadow-sm border`}
+          >
+            <p className="text-gray-500">{stat.label}</p>
+            <h3 className="text-3xl font-semibold text-blue-600">
+              {stat.value}
+            </h3>
+          </div>
+        ))}
       </section>
 
       {/* Timeline Table */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section className="max-w-6xl mx-auto sm:px-6 px-4 sm:pb-20 pb-10">
         {/* Search */}
         <div className="mb-4 relative w-[300px]">
           <input

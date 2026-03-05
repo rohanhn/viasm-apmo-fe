@@ -62,8 +62,28 @@ export default async function CountriesPage({
           country.code.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : countries;
+
+  // Stats data array
+  const statsData = [
+    {
+      id: 1,
+      label: 'Countries',
+      value: meta.pagination.total,
+    },
+    {
+      id: 2,
+      label: 'First APMO',
+      value: 1989,
+    },
+    {
+      id: 3,
+      label: 'Status',
+      value: 'Active',
+    },
+  ];
+
   return (
-    <div className="bg-[#F7F9FC] min-h-screen">
+    <div className="bg-[#F7F9FC]">
       {/* Hero */}
       <section
         className="relative bg-cover bg-center bg-no-repeat py-20"
@@ -73,35 +93,32 @@ export default async function CountriesPage({
       >
         <div className="absolute inset-0 bg-black bg-opacity-50" />
         <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
-          <h1 className="text-4xl font-semibold">Participating Countries</h1>
-          <p className="mt-4 text-lg max-w-2xl mx-auto">
+          <h1 className="sm:text-4xl text-3xl font-semibold">
+            Participating Countries
+          </h1>
+          <p className="sm:mt-4 mt-2 text-md sm:text-lg max-w-2xl mx-auto">
             Explore all APMO participating nations.
           </p>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="max-w-6xl mx-auto px-6 pb-5 grid md:grid-cols-3 gap-6 mt-10">
-        <div className="bg-white p-6 rounded-xl shadow-sm border">
-          <p className="text-gray-500">Countries</p>
-          <h3 className="text-3xl font-semibold text-blue-600">
-            {meta.pagination.total}
-          </h3>
-        </div>
-
-        <div className="bg-white p-6 rounded-xl shadow-sm border">
-          <p className="text-gray-500">First APMO</p>
-          <h3 className="text-3xl font-semibold text-blue-600">1989</h3>
-        </div>
-
-        <div className="bg-white p-6 rounded-xl shadow-sm border">
-          <p className="text-gray-500">Status</p>
-          <h3 className="text-3xl font-semibold text-blue-600">Active</h3>
-        </div>
+      <section className="max-w-6xl mx-auto sm:px-6 sm:pb-5 px-4 pb-5 grid md:grid-cols-3 sm:gap-6 gap-4 sm:mt-10 mt-4">
+        {statsData.map((stat) => (
+          <div
+            key={stat.id}
+            className="bg-white sm:p-6 p-4 rounded-xl shadow-sm border"
+          >
+            <p className="text-gray-500">{stat.label}</p>
+            <h3 className="text-3xl font-semibold text-blue-600">
+              {stat.value}
+            </h3>
+          </div>
+        ))}
       </section>
 
       {/* Countries Table */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section className="max-w-6xl mx-auto sm:px-6 px-4 sm:pb-20 pb-10">
         <Suspense fallback={<CountriesTableSkeleton />}>
           <CountriesTable
             countries={filteredCountries}
