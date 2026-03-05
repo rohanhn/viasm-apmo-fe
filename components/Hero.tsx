@@ -8,7 +8,7 @@ export default function Hero() {
     <section className="max-w-6xl mx-auto px-6">
       <div className="">
         {/* Hero Banner Container */}
-        <div className="relative w-full h-[450px] sm:h-[600px] overflow-hidden bg-[url('/assets/images/apmo/01_hero_world_map.png')] bg-contain bg-no-repeat bg-[100%_-60px] sm:bg-[100%_-200px]">
+        <div className="relative w-full h-[450px] sm:h-[600px] overflow-hidden bg-[url('/assets/images/apmo/01_hero_world_map.png')] bg-contain bg-no-repeat bg-[102%_-60px] sm:bg-[102%_-200px]">
           {/* Content Overlay */}
           <div className="relative z-10 flex flex-col justify-center items-start h-[60%] sm:h-full">
             <div className="max-w-2xl">
