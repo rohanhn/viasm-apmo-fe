@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable import/no-extraneous-dependencies */
 import 'flag-icons/css/flag-icons.min.css';
@@ -51,8 +52,39 @@ interface CountryRanking {
   localizations: any[];
 }
 
+interface GeneralInfo {
+  id: number;
+  documentId: string;
+  participating_countries: number;
+  participating_students: number;
+  mean_score: number;
+  standard_deviation: number;
+  gold_cut_off: number;
+  silver_cut_off: number;
+  bronze_cut_off: number;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  year: Year;
+  localizations: any[];
+}
+
 interface ApiResponse {
   data: CountryRanking[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
+
+interface GeneralInfoResponse {
+  data: GeneralInfo[];
   meta: {
     pagination: {
       page: number;
@@ -157,6 +189,35 @@ async function fetchCountryRankings(year: string): Promise<CountryRanking[]> {
   }
 }
 
+// Fetch general info data from API
+async function fetchGeneralInfo(year: string): Promise<GeneralInfo | null> {
+  try {
+    // Build filter query - try both name and slug for year
+    const filters = [
+      `filters[year][name][$eq]=${year}`,
+      `filters[year][slug][$eq]=${year}`,
+    ];
+
+    const url = `https://viasm-dev.trangnguyen.edu.vn/api/general-infos?populate=*&${filters.join(
+      '&'
+    )}`;
+
+    const response = await fetch(url, {
+      cache: 'no-store', // Ensure fresh data
+    });
+
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.status}`);
+    }
+
+    const data: GeneralInfoResponse = await response.json();
+    return data.data?.[0] || null;
+  } catch (error) {
+    console.error('Error fetching general info:', error);
+    return null;
+  }
+}
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -172,8 +233,11 @@ export async function generateMetadata({
 export default async function YearReportPage({ params }: PageProps) {
   const { year } = params;
 
-  // Fetch country rankings data
-  const rankings = await fetchCountryRankings(year);
+  // Fetch country rankings data and general info
+  const [rankings, generalInfo] = await Promise.all([
+    fetchCountryRankings(year),
+    fetchGeneralInfo(year),
+  ]);
 
   // Sort rankings by rank
   const sortedRankings = rankings.sort((a, b) => a.rank - b.rank);
@@ -227,44 +291,55 @@ export default async function YearReportPage({ params }: PageProps) {
       </section>
 
       {/* Summary Stats */}
-      {totalCountries > 0 && (
+      {generalInfo && (
         <section className="max-w-6xl mx-auto px-6 py-4">
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-            <div className="bg-white p-4 rounded-xl shadow-sm border text-center">
-              <p className="text-gray-500 text-sm">Countries</p>
-              <h3 className="text-2xl font-semibold text-primary-500">
-                {totalCountries}
-              </h3>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm border text-center">
-              <p className="text-gray-500 text-sm">Contestants</p>
-              <h3 className="text-2xl font-semibold text-primary-500">
-                {totalContestants}
-              </h3>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm border text-center">
-              <p className="text-gray-500 text-sm">Gold</p>
-              <h3 className="text-2xl font-semibold text-yellow-600">
-                {totalGold}
-              </h3>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm border text-center">
-              <p className="text-gray-500 text-sm">Silver</p>
-              <h3 className="text-2xl font-semibold text-gray-600">
-                {totalSilver}
-              </h3>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm border text-center">
-              <p className="text-gray-500 text-sm">Bronze</p>
-              <h3 className="text-2xl font-semibold text-orange-600">
-                {totalBronze}
-              </h3>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm border text-center">
-              <p className="text-gray-500 text-sm">Honorable</p>
-              <h3 className="text-2xl font-semibold text-blue-600">
-                {totalHonorableMentions}
-              </h3>
+          <div className="bg-white rounded-xl shadow-sm border p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              General Information
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 text-center items-center">
+              <div className="p-3">
+                <p className="text-gray-500 text-sm">Participating Countries</p>
+                <h3 className="text-xl font-semibold text-primary-500">
+                  {generalInfo.participating_countries}
+                </h3>
+              </div>
+              <div className="p-3">
+                <p className="text-gray-500 text-sm">Participating Students</p>
+                <h3 className="text-xl font-semibold text-primary-500">
+                  {generalInfo.participating_students}
+                </h3>
+              </div>
+              <div className="p-3">
+                <p className="text-gray-500 text-sm">Mean Score</p>
+                <h3 className="text-xl font-semibold text-blue-600">
+                  μ = {generalInfo.mean_score}
+                </h3>
+              </div>
+              <div className="p-3">
+                <p className="text-gray-500 text-sm">Standard Deviation</p>
+                <h3 className="text-xl font-semibold text-blue-600">
+                  σ = {generalInfo.standard_deviation}
+                </h3>
+              </div>
+              <div className="p-3">
+                <p className="text-gray-500 text-sm">Gold Cut-off</p>
+                <h3 className="text-xl font-semibold text-yellow-600">
+                  {generalInfo.gold_cut_off}
+                </h3>
+              </div>
+              <div className="p-3">
+                <p className="text-gray-500 text-sm">Silver Cut-off</p>
+                <h3 className="text-xl font-semibold text-gray-600">
+                  {generalInfo.silver_cut_off}
+                </h3>
+              </div>
+              <div className="p-3">
+                <p className="text-gray-500 text-sm">Bronze Cut-off</p>
+                <h3 className="text-xl font-semibold text-orange-600">
+                  {generalInfo.bronze_cut_off}
+                </h3>
+              </div>
             </div>
           </div>
         </section>
@@ -296,7 +371,10 @@ export default async function YearReportPage({ params }: PageProps) {
                     <th className="p-4">Gold Awards</th>
                     <th className="p-4">Silver Awards</th>
                     <th className="p-4">Bronze Awards</th>
-                    <th className="p-4">Honorable Mentions</th>
+                    <th className="p-4">
+                      Honorable <br />
+                      Mentions
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="text-sm text-gray-700">

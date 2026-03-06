@@ -53,7 +53,6 @@ export default async function CountriesPage({
 
   const countriesData = await getCountriesData(currentPage);
   const { data: countries, meta } = countriesData;
-
   // Filter countries based on search term (server-side filtering)
   const filteredCountries = searchTerm
     ? countries.filter(
@@ -62,7 +61,7 @@ export default async function CountriesPage({
           country.code.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : countries;
-
+  console.log('countriesData', filteredCountries);
   // Stats data array
   const statsData = [
     {
@@ -75,11 +74,11 @@ export default async function CountriesPage({
       label: 'First APMO',
       value: 1989,
     },
-    {
-      id: 3,
-      label: 'Status',
-      value: 'Active',
-    },
+    // {
+    //   id: 3,
+    //   label: 'Status',
+    //   value: 'Active',
+    // },
   ];
 
   return (

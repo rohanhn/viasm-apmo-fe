@@ -109,7 +109,7 @@ export default function ResultsPage() {
       <section className="max-w-6xl mx-auto sm:px-6 px-4 sm:py-12 py-6">
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Left Column - Yearly Reports */}
-          <div className="bg-white rounded-xl shadow-sm border p-6">
+          <div className="bg-white rounded-xl shadow-sm border sm:p-6 p-4">
             <h2 className="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-4 mb-2">
               Yearly Reports
             </h2>
@@ -172,7 +172,7 @@ export default function ResultsPage() {
           </div>
 
           {/* Right Column - Results by Country */}
-          <div className="bg-white rounded-xl shadow-sm border p-6">
+          <div className="bg-white rounded-xl shadow-sm border sm:p-6 p-4">
             <h2 className="text-2xl font-semibold text-gray-800 border-b border-gray-200 pb-4 mb-2">
               Results by Country
             </h2>
@@ -180,7 +180,7 @@ export default function ResultsPage() {
               Explore the APMO results by country
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
               {countries.map((country) => (
                 <Link
                   key={country.code}

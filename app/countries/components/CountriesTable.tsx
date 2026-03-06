@@ -85,65 +85,67 @@ export default function CountriesTable({
 
       {/* Table */}
       <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
-        <table className="w-full text-left">
-          <thead className="bg-blue-50 text-gray-600 text-sm">
-            <tr>
-              <th className="p-4">Code</th>
-              <th className="p-4">Country</th>
-              <th className="p-4">Status</th>
-              <th className="p-4">Contact</th>
-              <th className="p-4">Results</th>
-            </tr>
-          </thead>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="bg-blue-50 text-gray-600 text-sm">
+              <tr>
+                <th className="p-4">Code</th>
+                <th className="p-4">Country</th>
+                <th className="p-4">Status</th>
+                <th className="p-4">Contact</th>
+                <th className="p-4">Results</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {filteredCountries.length > 0 ? (
-              filteredCountries.map((country) => (
-                <tr
-                  key={country.documentId}
-                  className="border-t hover:bg-blue-50 transition"
-                >
-                  <td className="p-4 font-medium">{country.code}</td>
-                  <td className="p-4">{country.name}</td>
-                  <td className="p-4">
-                    <span
-                      className={
-                        country.active ? 'text-green-600' : 'text-red-600'
-                      }
-                    >
-                      {country.active ? 'Active' : 'Inactive'}
-                    </span>
-                  </td>
-                  <td className="p-4">
-                    {country.contact ? (
-                      <button className="text-blue-600 hover:underline">
-                        Contact
-                      </button>
-                    ) : (
-                      <span className="text-gray-400">N/A</span>
-                    )}
-                  </td>
-                  <td className="p-4">
-                    <Link 
-                      href={`/country_report/${country.code}/all`}
-                      className="text-blue-600 hover:underline hover:text-blue-800 transition-colors"
-                    >
-                      View
-                    </Link>
+            <tbody>
+              {filteredCountries.length > 0 ? (
+                filteredCountries.map((country) => (
+                  <tr
+                    key={country.documentId}
+                    className="border-t hover:bg-blue-50 transition"
+                  >
+                    <td className="p-4 font-medium">{country.code}</td>
+                    <td className="p-4">{country.name}</td>
+                    <td className="p-4">
+                      <span
+                        className={
+                          country.active ? 'text-green-600' : 'text-red-600'
+                        }
+                      >
+                        {country.active ? 'Active' : 'Inactive'}
+                      </span>
+                    </td>
+                    <td className="p-4">
+                      {country.contact ? (
+                        <button className="text-blue-600 hover:underline">
+                          Contact
+                        </button>
+                      ) : (
+                        <span className="text-gray-400">N/A</span>
+                      )}
+                    </td>
+                    <td className="p-4">
+                      <Link 
+                        href={`/country_report/${country.code}/all`}
+                        className="text-blue-600 hover:underline hover:text-blue-800 transition-colors"
+                      >
+                        View
+                      </Link>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={5} className="p-8 text-center text-gray-500">
+                    {localSearchTerm || initialSearchTerm
+                      ? 'No countries found matching your search.'
+                      : 'No countries available.'}
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={5} className="p-8 text-center text-gray-500">
-                  {localSearchTerm || initialSearchTerm
-                    ? 'No countries found matching your search.'
-                    : 'No countries available.'}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Pagination */}
