@@ -43,24 +43,19 @@ export const serviceAPI = {
   },
   getCountries(page: number = 1, pageSize: number = 25): Promise<any> {
     const query = qs.stringify({
-      populate: '*',
       'pagination[page]': page,
       'pagination[pageSize]': pageSize,
     });
 
     return serviceClient
-      .get(`/api/countries?${query}`)
+      .get(`/api/countries?populate=%2A&${query}`)
       .then((res) => {
-        return (
-          res?.data || {
-            data: [],
-            meta: {
-              pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
-            },
-          }
-        );
+        console.log('Raw countries API response:', res);
+        console.log('Countries data:', res?.data);
+        return res?.data; // ✅ Return the actual response data
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error('Error fetching countries:', error);
         return {
           data: [],
           meta: {
@@ -93,14 +88,9 @@ export const serviceAPI = {
     return serviceClient
       .get(`/api/country-rankings?${query}`)
       .then((res) => {
-        return (
-          res?.data || {
-            data: [],
-            meta: {
-              pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
-            },
-          }
-        );
+        console.log('Raw country rankings API response:', res);
+        console.log('Country rankings data:', res?.data);
+        return res?.data;
       })
       .catch((error) => {
         console.error('Error fetching country rankings:', error);
