@@ -125,7 +125,7 @@ export default function CountriesTable({
                       )}
                     </td>
                     <td className="p-4">
-                      <Link 
+                      <Link
                         href={`/country_report/${country.code}/all`}
                         className="text-blue-600 hover:underline hover:text-blue-800 transition-colors"
                       >

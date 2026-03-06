@@ -243,18 +243,18 @@ export default async function YearReportPage({ params }: PageProps) {
   const sortedRankings = rankings.sort((a, b) => a.rank - b.rank);
 
   // Calculate totals for display
-  const totalCountries = sortedRankings.length;
-  const totalContestants = sortedRankings.reduce(
-    (sum, r) => sum + r.contestants_num,
-    0
-  );
-  const totalGold = sortedRankings.reduce((sum, r) => sum + r.gold_cut, 0);
-  const totalSilver = sortedRankings.reduce((sum, r) => sum + r.silver_cut, 0);
-  const totalBronze = sortedRankings.reduce((sum, r) => sum + r.bronze_cut, 0);
-  const totalHonorableMentions = sortedRankings.reduce(
-    (sum, r) => sum + r.honorable_mentions,
-    0
-  );
+  // const totalCountries = sortedRankings.length;
+  // const totalContestants = sortedRankings.reduce(
+  //   (sum, r) => sum + r.contestants_num,
+  //   0
+  // );
+  // const totalGold = sortedRankings.reduce((sum, r) => sum + r.gold_cut, 0);
+  // const totalSilver = sortedRankings.reduce((sum, r) => sum + r.silver_cut, 0);
+  // const totalBronze = sortedRankings.reduce((sum, r) => sum + r.bronze_cut, 0);
+  // const totalHonorableMentions = sortedRankings.reduce(
+  //   (sum, r) => sum + r.honorable_mentions,
+  //   0
+  // );
 
   return (
     <div className="bg-[#F7F9FC]">

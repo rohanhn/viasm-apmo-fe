@@ -1,68 +1,78 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
-import type { Metadata } from 'next';
+
+'use client';
+
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { serviceAPI } from '@/src/services/serviceAPI';
 import type { CountryRanking, CountryRankingsResponse } from '@/src/types';
 
-interface CountryReportPageProps {
-  params: {
-    code: string;
-  };
-}
+export default function CountryReportPage() {
+  const params = useParams();
+  const [rankings, setRankings] = useState<CountryRanking[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [countryInfo, setCountryInfo] = useState<any>(null);
 
-async function getCountryRankingsData(
-  countryCode: string
-): Promise<CountryRankingsResponse> {
-  try {
-    const response: CountryRankingsResponse =
-      await serviceAPI.getCountryRankings(countryCode);
-    return response;
-  } catch (error) {
-    console.error('Error fetching country rankings:', error);
-    return {
-      data: [],
-      meta: {
-        pagination: {
-          page: 1,
-          pageSize: 25,
-          pageCount: 1,
-          total: 0,
-        },
-      },
+  const countryCode = (params.code as string).toUpperCase();
+
+  useEffect(() => {
+    const fetchCountryRankings = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        console.log('Calling getCountryRankings API for:', countryCode);
+        const response: CountryRankingsResponse =
+          await serviceAPI.getCountryRankings(countryCode);
+        console.log('Country rankings API response:', response);
+
+        if (response?.data) {
+          setRankings(response.data);
+          setCountryInfo(response.data[0]?.country);
+          console.log('Rankings loaded:', response.data.length);
+        } else {
+          setError('No data received from API');
+        }
+      } catch (err) {
+        console.error('Error fetching country rankings:', err);
+        setError('Failed to load country rankings');
+      } finally {
+        setLoading(false);
+      }
     };
+
+    if (countryCode) {
+      fetchCountryRankings();
+    }
+  }, [countryCode]);
+
+  if (loading) {
+    return <CountryReportSkeleton countryCode={countryCode} />;
   }
-}
 
-export async function generateMetadata({
-  params,
-}: CountryReportPageProps): Promise<Metadata> {
-  const countryCode = params.code.toUpperCase();
-
-  return {
-    title: `${countryCode} Results - APMO Country Rankings`,
-    description: `View detailed APMO performance results and rankings for ${countryCode} across all years.`,
-    keywords: `APMO, ${countryCode}, mathematics olympiad, country rankings, results`,
-  };
-}
-
-export default async function CountryReportPage({
-  params,
-}: CountryReportPageProps) {
-  const countryCode = params.code.toUpperCase();
-
-  // Fetch country rankings data
-  const rankingsResponse = await getCountryRankingsData(countryCode);
-  const { data: rankings } = rankingsResponse;
-
-  // If no data found, show 404
-  //   if (!rankings || rankings.length === 0) {
-  //     notFound();
-  //   }
-
-  // Get country info from first ranking entry
-  const countryInfo = rankings[0]?.country;
+  if (error) {
+    return (
+      <div className="bg-[#F7F9FC] min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-semibold text-red-600 mb-2">
+            Error Loading Country Data
+          </h2>
+          <p className="text-gray-600">{error}</p>
+          <Link
+            href="/countries"
+            className="mt-4 inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
+          >
+            ← Back to Countries
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#F7F9FC]">
@@ -222,6 +232,65 @@ export default async function CountryReportPage({
               No historical data available for this country.
             </div>
           )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function CountryReportSkeleton({ countryCode }: { countryCode: string }) {
+  return (
+    <div className="bg-[#F7F9FC]">
+      {/* Hero Section */}
+      <section
+        className="relative bg-cover bg-center bg-no-repeat py-20"
+        style={{
+          backgroundImage: 'url(/assets/images/apmo/03_country_map.png)',
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
+          <div className="mb-4">
+            <Link
+              href="/countries"
+              className="inline-flex items-center text-white/80 hover:text-white transition-colors"
+            >
+              <svg
+                className="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              Back to Countries
+            </Link>
+          </div>
+          <h1 className="sm:text-4xl text-3xl font-semibold">
+            Loading {countryCode} Results...
+          </h1>
+          <p className="sm:mt-4 mt-2 text-md sm:text-lg max-w-2xl mx-auto">
+            Fetching APMO performance data
+          </p>
+        </div>
+      </section>
+
+      {/* Loading Content */}
+      <section className="max-w-6xl mx-auto sm:px-6 px-4 sm:py-12 py-6">
+        <div className="bg-white rounded-xl shadow-sm border p-8">
+          <div className="animate-pulse">
+            <div className="h-6 bg-gray-200 rounded w-1/4 mb-4" />
+            <div className="space-y-3">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="h-12 bg-gray-200 rounded" />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </div>

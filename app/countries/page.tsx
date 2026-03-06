@@ -1,59 +1,71 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import type { Metadata } from 'next';
-import { Suspense } from 'react';
+
+'use client';
+
+import { useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
 
 import { serviceAPI } from '@/src/services/serviceAPI';
-import type { CountryResponse } from '@/src/types';
+import type { Country, CountryResponse } from '@/src/types';
 
 import CountriesTable from './components/CountriesTable';
 
-export const metadata: Metadata = {
-  title: 'APMO Countries - Participating Nations',
-  description:
-    'Explore all participating countries in the Asian Pacific Mathematics Olympiad (APMO). View country details, contacts, and results.',
-  keywords:
-    'APMO, countries, mathematics olympiad, Asia Pacific, participating nations',
-};
-
-interface SearchParams {
-  page?: string;
-  search?: string;
+export default function CountriesPage() {
+  return (
+    <Suspense fallback={<CountriesPageSkeleton />}>
+      <CountriesContent />
+    </Suspense>
+  );
 }
 
-interface CountriesPageProps {
-  searchParams: SearchParams;
-}
+function CountriesContent() {
+  const searchParams = useSearchParams();
+  const [countries, setCountries] = useState<Country[]>([]);
+  const [pagination, setPagination] = useState({
+    page: 1,
+    pageSize: 25,
+    pageCount: 1,
+    total: 0,
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-async function getCountriesData(page: number = 1): Promise<CountryResponse> {
-  try {
-    const response: CountryResponse = await serviceAPI.getCountries(page, 25);
-    return response;
-  } catch (error) {
-    console.error('Error fetching countries:', error);
-    return {
-      data: [],
-      meta: {
-        pagination: {
-          page: 1,
-          pageSize: 25,
-          pageCount: 1,
-          total: 0,
-        },
-      },
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const searchTerm = searchParams.get('search') || '';
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        console.log('Calling getCountries API with page:', currentPage);
+        const response: CountryResponse = await serviceAPI.getCountries(
+          currentPage,
+          25
+        );
+        console.log('Countries API response:', response);
+
+        if (response?.data) {
+          setCountries(response.data);
+          setPagination(response.meta.pagination);
+          console.log('Countries loaded:', response.data.length);
+        } else {
+          setError('No data received from API');
+        }
+      } catch (err) {
+        console.error('Error fetching countries:', err);
+        setError('Failed to load countries');
+      } finally {
+        setLoading(false);
+      }
     };
-  }
-}
 
-export default async function CountriesPage({
-  searchParams,
-}: CountriesPageProps) {
-  const currentPage = parseInt(searchParams.page || '1', 10);
-  const searchTerm = searchParams.search || '';
+    fetchCountries();
+  }, [currentPage]);
 
-  const countriesData = await getCountriesData(currentPage);
-  const { data: countries, meta } = countriesData;
-  // Filter countries based on search term (server-side filtering)
+  // Filter countries based on search term (client-side filtering)
   const filteredCountries = searchTerm
     ? countries.filter(
         (country) =>
@@ -61,25 +73,32 @@ export default async function CountriesPage({
           country.code.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : countries;
-  console.log('countriesData', filteredCountries);
   // Stats data array
   const statsData = [
     {
       id: 1,
       label: 'Countries',
-      value: meta.pagination.total,
+      value: loading ? '...' : pagination.total,
     },
     {
       id: 2,
       label: 'First APMO',
       value: 1989,
     },
-    // {
-    //   id: 3,
-    //   label: 'Status',
-    //   value: 'Active',
-    // },
   ];
+
+  if (error) {
+    return (
+      <div className="bg-[#F7F9FC] min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-semibold text-red-600 mb-2">
+            Error Loading Countries
+          </h2>
+          <p className="text-gray-600">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#F7F9FC]">
@@ -118,14 +137,60 @@ export default async function CountriesPage({
 
       {/* Countries Table */}
       <section className="max-w-6xl mx-auto sm:px-6 px-4 sm:pb-20 pb-10">
-        <Suspense fallback={<CountriesTableSkeleton />}>
+        {loading ? (
+          <CountriesTableSkeleton />
+        ) : (
           <CountriesTable
             countries={filteredCountries}
             searchTerm={searchTerm}
-            pagination={meta.pagination}
+            pagination={pagination}
             currentPage={currentPage}
           />
-        </Suspense>
+        )}
+      </section>
+    </div>
+  );
+}
+
+function CountriesPageSkeleton() {
+  return (
+    <div className="bg-[#F7F9FC] min-h-screen">
+      {/* Hero */}
+      <section
+        className="relative bg-cover bg-center bg-no-repeat py-20"
+        style={{
+          backgroundImage: 'url(/assets/images/apmo/03_country_map.png)',
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
+          <h1 className="sm:text-4xl text-3xl font-semibold">
+            Participating Countries
+          </h1>
+          <p className="sm:mt-4 mt-2 text-md sm:text-lg max-w-2xl mx-auto">
+            Explore all APMO participating nations.
+          </p>
+        </div>
+      </section>
+
+      {/* Stats Loading */}
+      <section className="max-w-6xl mx-auto sm:px-6 sm:pb-5 px-4 pb-5 grid md:grid-cols-3 sm:gap-6 gap-4 sm:mt-10 mt-4">
+        {[...Array(2)].map((_, i) => (
+          <div
+            key={i}
+            className="bg-white sm:p-6 p-4 rounded-xl shadow-sm border"
+          >
+            <div className="animate-pulse">
+              <div className="h-4 bg-gray-200 rounded w-16 mb-2" />
+              <div className="h-8 bg-gray-200 rounded w-12" />
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* Table Loading */}
+      <section className="max-w-6xl mx-auto sm:px-6 px-4 sm:pb-20 pb-10">
+        <CountriesTableSkeleton />
       </section>
     </div>
   );

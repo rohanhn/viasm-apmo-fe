@@ -3,9 +3,9 @@
   "version": "3.10.1",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "powershell -ExecutionPolicy Bypass -File scripts/disable-i18next-types.ps1",
+    "prebuild": "bash scripts/disable-i18next-types.sh",
     "build": "next build",
-    "postbuild": "next-sitemap && powershell -ExecutionPolicy Bypass -File scripts/restore-i18next-types.ps1",
+    "postbuild": "next-sitemap && bash scripts/restore-i18next-types.sh",
     "start": "next start",
     "build-stats": "cross-env ANALYZE=true npm run build",
     "export": "next export",

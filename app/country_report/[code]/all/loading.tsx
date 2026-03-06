@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 export default function CountryReportLoading() {
   return (
     <div className="bg-[#F7F9FC]">
@@ -22,7 +23,10 @@ export default function CountryReportLoading() {
       <section className="max-w-6xl mx-auto sm:px-6 px-4 sm:pt-8 pt-4">
         <div className="grid md:grid-cols-4 sm:gap-6 gap-4">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-white sm:p-6 p-4 rounded-xl shadow-sm border">
+            <div
+              key={i}
+              className="bg-white sm:p-6 p-4 rounded-xl shadow-sm border"
+            >
               <div className="animate-pulse">
                 <div className="h-4 bg-gray-200 rounded w-20 mb-2" />
                 <div className="h-8 bg-gray-200 rounded w-16" />

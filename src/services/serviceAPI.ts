@@ -76,17 +76,16 @@ export const serviceAPI = {
       };
     }
 
-    const query = qs.stringify({
-      populate: {
-        country: true,
-        year: true,
-      },
+    const baseQuery = qs.stringify({
       filters,
       sort: ['year.name:desc'], // Sort by year descending (newest first)
     });
 
+    // Add URL encoded populate for Strapi compatibility
+    const finalQuery = `populate%5Bcountry%5D=true&populate%5Byear%5D=true&${baseQuery}`;
+
     return serviceClient
-      .get(`/api/country-rankings?${query}`)
+      .get(`/api/country-rankings?${finalQuery}`)
       .then((res) => {
         console.log('Raw country rankings API response:', res);
         console.log('Country rankings data:', res?.data);
