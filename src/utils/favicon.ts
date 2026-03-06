@@ -42,6 +42,7 @@ export const manifestConfig = {
 
 // Complete metadata configuration with SEO and favicon support
 export const getAppMetadata = (): Metadata => ({
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://apmo.org'),
   title: {
     default: 'APMO - Asian Pacific Mathematics Olympiad',
     template: '%s | APMO',
@@ -96,7 +97,6 @@ export const getAppMetadata = (): Metadata => ({
   },
   icons: faviconConfig,
   manifest: manifestConfig.manifest,
-  themeColor: manifestConfig.themeColor,
   applicationName: manifestConfig.applicationName,
   appleWebApp: manifestConfig.appleWebApp,
   other: {
