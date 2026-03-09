@@ -129,6 +129,12 @@ const getFlagClass = (countryCode: string): string => {
     USA: 'us',
     URY: 'uy',
     UZB: 'uz',
+    UKR: 'ua',
+    SV: 'sv',
+    EC: 'ec',
+    CO: 'co',
+    MONGOL: 'mn',
+    GT: 'gt',
   };
   const twoLetterCode = countryCodeMap[countryCode];
   return twoLetterCode ? `fi fi-${twoLetterCode}` : 'fi fi-xx';

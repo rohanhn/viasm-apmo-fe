@@ -55,6 +55,7 @@ export default function Navbar() {
               width={120}
               height={40}
               className="rounded"
+              style={{ height: "auto" }}
             />
           </Link>
         </div>
@@ -124,6 +125,7 @@ export default function Navbar() {
                 width={100}
                 height={33}
                 className="rounded"
+                style={{ height: "auto" }}
               />
               <button
                 className="p-2 rounded-md hover:bg-gray-100 transition"

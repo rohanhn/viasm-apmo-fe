@@ -34,7 +34,6 @@ export const manifestConfig = {
   themeColor: '#073890',
   applicationName: 'APMO',
   appleWebApp: {
-    capable: true,
     title: 'APMO',
     statusBarStyle: 'default' as const,
   },
@@ -102,5 +101,6 @@ export const getAppMetadata = (): Metadata => ({
   other: {
     'msapplication-TileColor': '#073890',
     'msapplication-config': '/browserconfig.xml',
+    'mobile-web-app-capable': 'yes',
   },
 });

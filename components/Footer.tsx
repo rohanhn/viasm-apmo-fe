@@ -19,6 +19,7 @@ export default function Footer() {
                 width={120}
                 height={40}
                 className="rounded"
+                style={{ height: "auto" }}
               />
             </Link>
             <p className="text-gray-300 mb-6 max-w-md">

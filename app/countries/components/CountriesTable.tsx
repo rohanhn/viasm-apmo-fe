@@ -2,6 +2,8 @@
 
 'use client';
 
+import 'flag-icons/css/flag-icons.min.css';
+
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
@@ -21,7 +23,6 @@ interface CountriesTableProps {
   };
   currentPage: number;
 }
-
 export default function CountriesTable({
   countries,
   searchTerm: initialSearchTerm,
@@ -56,7 +57,70 @@ export default function CountriesTable({
           country.code.toLowerCase().includes(localSearchTerm.toLowerCase())
       )
     : countries;
-
+  // Function to get flag CSS class for country
+  const getFlagClass = (countryCode: string): string => {
+    const countryCodeMap: Record<string, string> = {
+      ARG: 'ar',
+      AUS: 'au',
+      AZE: 'az',
+      BGD: 'bd',
+      BOL: 'bo',
+      BRA: 'br',
+      BGR: 'bg',
+      KHM: 'kh',
+      CAN: 'ca',
+      CHL: 'cl',
+      COL: 'co',
+      CRI: 'cr',
+      CIV: 'ci',
+      ECU: 'ec',
+      SLV: 'sv',
+      GTM: 'gt',
+      HKG: 'hk',
+      IND: 'in',
+      IDN: 'id',
+      IRN: 'ir',
+      JPN: 'jp',
+      KAZ: 'kz',
+      KGZ: 'kg',
+      MAC: 'mo',
+      MKD: 'mk',
+      MYS: 'my',
+      MEX: 'mx',
+      MAR: 'ma',
+      NZL: 'nz',
+      NIC: 'ni',
+      PAK: 'pk',
+      PAN: 'pa',
+      PER: 'pe',
+      PHL: 'ph',
+      QAT: 'qa',
+      KOR: 'kr',
+      RUS: 'ru',
+      RWA: 'rw',
+      SAU: 'sa',
+      SGP: 'sg',
+      LKA: 'lk',
+      SYR: 'sy',
+      TWN: 'tw',
+      TJK: 'tj',
+      THA: 'th',
+      TTO: 'tt',
+      TKM: 'tm',
+      ARE: 'ae',
+      USA: 'us',
+      URY: 'uy',
+      UZB: 'uz',
+      UKR: 'ua',
+      SV: 'sv',
+      EC: 'ec',
+      CO: 'co',
+      MONGOL: 'mn',
+      GT: 'gt',
+    };
+    const twoLetterCode = countryCodeMap[countryCode];
+    return twoLetterCode ? `fi fi-${twoLetterCode}` : 'fi fi-xx';
+  };
   return (
     <>
       {/* Search */}
@@ -105,7 +169,10 @@ export default function CountriesTable({
                     className="border-t hover:bg-blue-50 transition"
                   >
                     <td className="p-4 font-medium">{country.code}</td>
-                    <td className="p-4">{country.name}</td>
+                    <td className="p-4">
+                      <span className={`${getFlagClass(country.code)} mr-2`} />
+                      {country.name}
+                    </td>
                     <td className="p-4">
                       <span
                         className={

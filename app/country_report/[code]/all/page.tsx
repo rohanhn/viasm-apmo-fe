@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
@@ -19,7 +20,64 @@ export default function CountryReportPage() {
   const [countryInfo, setCountryInfo] = useState<any>(null);
 
   const countryCode = (params.code as string).toUpperCase();
-
+  // Function to get flag CSS class for country
+  const getFlagClass = (countryCode: string): string => {
+    const countryCodeMap: Record<string, string> = {
+      ARG: 'ar',
+      AUS: 'au',
+      AZE: 'az',
+      BGD: 'bd',
+      BOL: 'bo',
+      BRA: 'br',
+      BGR: 'bg',
+      KHM: 'kh',
+      CAN: 'ca',
+      CHL: 'cl',
+      COL: 'co',
+      CRI: 'cr',
+      CIV: 'ci',
+      ECU: 'ec',
+      SLV: 'sv',
+      GTM: 'gt',
+      HKG: 'hk',
+      IND: 'in',
+      IDN: 'id',
+      IRN: 'ir',
+      JPN: 'jp',
+      KAZ: 'kz',
+      KGZ: 'kg',
+      MAC: 'mo',
+      MKD: 'mk',
+      MYS: 'my',
+      MEX: 'mx',
+      MAR: 'ma',
+      NZL: 'nz',
+      NIC: 'ni',
+      PAK: 'pk',
+      PAN: 'pa',
+      PER: 'pe',
+      PHL: 'ph',
+      QAT: 'qa',
+      KOR: 'kr',
+      RUS: 'ru',
+      RWA: 'rw',
+      SAU: 'sa',
+      SGP: 'sg',
+      LKA: 'lk',
+      SYR: 'sy',
+      TWN: 'tw',
+      TJK: 'tj',
+      THA: 'th',
+      TTO: 'tt',
+      TKM: 'tm',
+      ARE: 'ae',
+      USA: 'us',
+      URY: 'uy',
+      UZB: 'uz',
+    };
+    const twoLetterCode = countryCodeMap[countryCode];
+    return twoLetterCode ? `fi fi-${twoLetterCode}` : 'fi fi-xx';
+  };
   useEffect(() => {
     const fetchCountryRankings = async () => {
       setLoading(true);
@@ -106,9 +164,12 @@ export default function CountryReportPage() {
               Back to Countries
             </Link>
           </div>
-          <h1 className="sm:text-4xl text-3xl font-semibold">
-            {countryInfo?.name} ({countryCode})
-          </h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className={`${getFlagClass(countryCode)} text-2xl`} />
+            <h1 className="sm:text-4xl text-3xl font-semibold">
+              {countryInfo.name}
+            </h1>
+          </div>
           <p className="sm:mt-4 mt-2 text-md sm:text-lg max-w-2xl mx-auto">
             APMO Performance Results and Rankings
           </p>
