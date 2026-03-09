@@ -156,33 +156,34 @@ async function fetchStudents(
   countryCode: string,
   year: string
 ): Promise<Student[]> {
-  try {
-    // Build filter query - try both code and slug for country, both name and slug for year
-    const filters = [
-      `filters[country][code][$eq]=${countryCode}`,
-      `filters[country][slug][$eq]=${countryCode}`,
-      `filters[year][name][$eq]=${year}`,
-      `filters[year][slug][$eq]=${year}`,
-    ];
+  // Build filter query
+  const filters = [
+    `filters[country][code][$eq]=${countryCode}`,
+    `filters[country][slug][$eq]=${countryCode}`,
+    `filters[year][name][$eq]=${year}`,
+    `filters[year][slug][$eq]=${year}`,
+  ];
+  const baseUrl = process.env.NEXT_API_URL;
+  // Lần 1: lấy meta.pagination.total
+  const url1 = `${baseUrl}/api/students?populate=*&${filters.join('&')}`;
+  console.log('url1:', url1);
+  const res1 = await fetch(url1, { cache: 'no-store' });
+  if (!res1.ok) throw new Error(`API request failed: ${res1.status}`);
+  const data1: ApiResponse = await res1.json();
+  const total = data1.meta?.pagination?.total || 0;
 
-    const url = `${
-      process.env.NEXT_PUBLIC_API_URL
-    }/api/students?populate=*&${filters.join('&')}`;
-
-    const response = await fetch(url, {
-      cache: 'no-store', // Ensure fresh data
-    });
-
-    if (!response.ok) {
-      throw new Error(`API request failed: ${response.status}`);
-    }
-
-    const data: ApiResponse = await response.json();
-    return data.data || [];
-  } catch (error) {
-    console.error('Error fetching students:', error);
-    return [];
+  // Lần 2: lấy toàn bộ dữ liệu nếu total > 0
+  if (total > 0) {
+    const url2 = `${baseUrl}/api/students?populate=*&${filters.join(
+      '&'
+    )}&pagination[page]=1&pagination[pageSize]=${total}`;
+    console.log('url2:', url2);
+    const res2 = await fetch(url2, { cache: 'no-store' });
+    if (!res2.ok) throw new Error(`API request failed: ${res2.status}`);
+    const data2: ApiResponse = await res2.json();
+    return data2.data || [];
   }
+  return data1.data || [];
 }
 
 export async function generateMetadata({

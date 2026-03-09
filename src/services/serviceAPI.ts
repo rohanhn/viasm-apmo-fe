@@ -326,4 +326,59 @@ export const serviceAPI = {
         };
       });
   },
+
+  getStudentsByCountryAndYear(countryCode: string, year: string, pageSize?: number): Promise<any> {
+    const filters = {
+      $and: [
+        {
+          $or: [
+            { country: { code: { $eq: countryCode.toUpperCase() } } },
+            { country: { slug: { $eq: countryCode } } },
+          ],
+        },
+        {
+          $or: [
+            { year: { name: { $eq: year } } },
+            { year: { slug: { $eq: year } } },
+          ],
+        },
+      ],
+    };
+
+    const query = qs.stringify({
+      filters,
+      populate: {
+        country: true,
+        year: true,
+      },
+      sort: ['rank:asc'],
+      ...(pageSize && {
+        pagination: {
+          page: 1,
+          pageSize,
+        },
+      }),
+    });
+
+    return serviceClient
+      .get(`/api/students?${query}`)
+      .then((res) => {
+        console.log('Students by country and year data:', res.data);
+        return res?.data;
+      })
+      .catch((error) => {
+        console.error('Error fetching students by country and year:', error);
+        return {
+          data: [],
+          meta: {
+            pagination: {
+              page: 1,
+              pageSize: pageSize || 25,
+              pageCount: 1,
+              total: 0,
+            },
+          },
+        };
+      });
+  },
 };
