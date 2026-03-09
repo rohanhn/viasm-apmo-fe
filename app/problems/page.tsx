@@ -36,10 +36,34 @@ export default function ProblemsPage() {
     const fetchProblems = async () => {
       try {
         setLoading(true);
-        const [statementsResponse, solutionsResponse] = await Promise.all([
+
+        // First, get the total count for both endpoints
+        const [statementsInitial, solutionsInitial] = await Promise.all([
           serviceAPI.getProblemStatements(),
           serviceAPI.getProblemSolutions(),
         ]);
+
+        console.log('Initial statements response:', statementsInitial);
+        console.log('Initial solutions response:', solutionsInitial);
+
+        const statementsTotal = statementsInitial?.meta?.pagination?.total || 0;
+        const solutionsTotal = solutionsInitial?.meta?.pagination?.total || 0;
+
+        console.log(
+          'Statements total:',
+          statementsTotal,
+          'Solutions total:',
+          solutionsTotal
+        );
+
+        // Then fetch all data using the total count as pageSize
+        const [statementsResponse, solutionsResponse] = await Promise.all([
+          serviceAPI.getProblemStatements(statementsTotal || 1000), // fallback to 1000 if no total
+          serviceAPI.getProblemSolutions(solutionsTotal || 1000), // fallback to 1000 if no total
+        ]);
+
+        console.log('Final statements response:', statementsResponse);
+        console.log('Final solutions response:', solutionsResponse);
 
         setProblemStatements(statementsResponse.data || []);
         setProblemSolutions(solutionsResponse.data || []);

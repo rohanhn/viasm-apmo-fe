@@ -41,10 +41,17 @@ export const serviceAPI = {
     return serviceClient.get(`/api/global?${query}`);
     // return {};
   },
-  getCountries(page: number = 1, pageSize: number = 25): Promise<any> {
+  getCountries(page: number = 1, pageSize?: number): Promise<any> {
     const query = qs.stringify({
-      'pagination[page]': page,
-      'pagination[pageSize]': pageSize,
+      ...(pageSize
+        ? {
+            'pagination[page]': page,
+            'pagination[pageSize]': pageSize,
+          }
+        : {
+            'pagination[page]': page,
+            'pagination[pageSize]': 25,
+          }),
     });
 
     return serviceClient
@@ -59,13 +66,18 @@ export const serviceAPI = {
         return {
           data: [],
           meta: {
-            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+            pagination: {
+              page: 1,
+              pageSize: pageSize || 25,
+              pageCount: 1,
+              total: 0,
+            },
           },
         };
       });
   },
 
-  getCountryRankings(countryCode?: string): Promise<any> {
+  getCountryRankings(countryCode?: string, pageSize?: number): Promise<any> {
     const filters: any = {};
 
     if (countryCode) {
@@ -79,6 +91,12 @@ export const serviceAPI = {
     const baseQuery = qs.stringify({
       filters,
       sort: ['year.name:desc'], // Sort by year descending (newest first)
+      ...(pageSize && {
+        pagination: {
+          page: 1,
+          pageSize,
+        },
+      }),
     });
 
     // Add URL encoded populate for Strapi compatibility
@@ -96,15 +114,26 @@ export const serviceAPI = {
         return {
           data: [],
           meta: {
-            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+            pagination: {
+              page: 1,
+              pageSize: pageSize || 25,
+              pageCount: 1,
+              total: 0,
+            },
           },
         };
       });
   },
 
-  getRegulations(): Promise<any> {
+  getRegulations(pageSize?: number): Promise<any> {
     const query = qs.stringify({
       populate: '*',
+      ...(pageSize && {
+        pagination: {
+          page: 1,
+          pageSize,
+        },
+      }),
     });
     return serviceClient
       .get(`/api/regulations?${query}`)
@@ -117,19 +146,33 @@ export const serviceAPI = {
         return {
           data: [],
           meta: {
-            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+            pagination: {
+              page: 1,
+              pageSize: pageSize || 25,
+              pageCount: 1,
+              total: 0,
+            },
           },
         };
       });
   },
 
-  getTimelines(page: number = 1, pageSize: number = 25): Promise<any> {
+  getTimelines(page: number = 1, pageSize?: number): Promise<any> {
     const query = qs.stringify({
       populate: '*',
-      pagination: {
-        page,
-        pageSize,
-      },
+      ...(pageSize
+        ? {
+            pagination: {
+              page,
+              pageSize,
+            },
+          }
+        : {
+            pagination: {
+              page,
+              pageSize: 25,
+            },
+          }),
       sort: ['year.name:desc'],
     });
     return serviceClient
@@ -143,15 +186,26 @@ export const serviceAPI = {
         return {
           data: [],
           meta: {
-            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+            pagination: {
+              page: 1,
+              pageSize: pageSize || 25,
+              pageCount: 1,
+              total: 0,
+            },
           },
         };
       });
   },
 
-  getProblemStatements(): Promise<any> {
+  getProblemStatements(pageSize?: number): Promise<any> {
     const query = qs.stringify({
       populate: '*',
+      ...(pageSize && {
+        pagination: {
+          page: 1,
+          pageSize,
+        },
+      }),
     });
     return serviceClient
       .get(`/api/problem-statements?${query}`)
@@ -170,9 +224,15 @@ export const serviceAPI = {
       });
   },
 
-  getProblemSolutions(): Promise<any> {
+  getProblemSolutions(pageSize?: number): Promise<any> {
     const query = qs.stringify({
       populate: '*',
+      ...(pageSize && {
+        pagination: {
+          page: 1,
+          pageSize,
+        },
+      }),
     });
     return serviceClient
       .get(`/api/problem-solutions?${query}`)
@@ -182,6 +242,82 @@ export const serviceAPI = {
       })
       .catch((error) => {
         console.error('Error fetching problem solutions:', error);
+        return {
+          data: [],
+          meta: {
+            pagination: { page: 1, pageSize: 25, pageCount: 1, total: 0 },
+          },
+        };
+      });
+  },
+
+  getCountryRankingsByYear(year: string, pageSize?: number): Promise<any> {
+    const filters = {
+      $or: [
+        { year: { name: { $eq: year } } },
+        { year: { slug: { $eq: year } } },
+      ],
+    };
+
+    const query = qs.stringify({
+      filters,
+      populate: {
+        country: true,
+        year: true,
+      },
+      ...(pageSize && {
+        pagination: {
+          page: 1,
+          pageSize,
+        },
+      }),
+    });
+
+    return serviceClient
+      .get(`/api/country-rankings?${query}`)
+      .then((res) => {
+        console.log('Country rankings by year data:', res.data);
+        return res?.data;
+      })
+      .catch((error) => {
+        console.error('Error fetching country rankings by year:', error);
+        return {
+          data: [],
+          meta: {
+            pagination: {
+              page: 1,
+              pageSize: pageSize || 25,
+              pageCount: 1,
+              total: 0,
+            },
+          },
+        };
+      });
+  },
+
+  getGeneralInfoByYear(year: string): Promise<any> {
+    const filters = {
+      $or: [
+        { year: { name: { $eq: year } } },
+        { year: { slug: { $eq: year } } },
+      ],
+    };
+
+    const query = qs.stringify({
+      filters,
+      populate: {
+        year: true,
+      },
+    });
+
+    return serviceClient
+      .get(`/api/general-infos?${query}`)
+      .then((res) => {
+        console.log('General info by year data:', res.data);
+        return res?.data;
+      })
+      .catch((error) => {
+        console.error('Error fetching general info by year:', error);
         return {
           data: [],
           meta: {

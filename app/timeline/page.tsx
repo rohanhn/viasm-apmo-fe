@@ -67,15 +67,15 @@ function TimelineContent() {
       value: 1989,
       className: 'p-6',
     },
-    {
-      id: 3,
-      label: 'Latest Year',
-      value:
-        timelineData.length > 0
-          ? Math.max(...timelineData.map((d) => parseInt(d.year.name)))
-          : 2026,
-      className: 'p-6',
-    },
+    // {
+    //   id: 3,
+    //   label: 'Latest Year',
+    //   value:
+    //     timelineData.length > 0
+    //       ? Math.max(...timelineData.map((d) => parseInt(d.year.name)))
+    //       : 2026,
+    //   className: 'p-6',
+    // },
   ];
 
   useEffect(() => {

@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable import/no-extraneous-dependencies */
 import 'flag-icons/css/flag-icons.min.css';
 
@@ -123,7 +124,7 @@ export default function ResultsPage() {
                 {fullReportsYears.map((year) => (
                   <Link
                     key={year}
-                    href={`/results/${year}`}
+                    href={`/year_report/${year}`}
                     className="text-white text-sm py-2 rounded-lg transition bg-primary-500 hover:bg-primary-400 cursor-pointer font-medium text-center block"
                     title={`View ${year} full report`}
                   >
@@ -140,14 +141,14 @@ export default function ResultsPage() {
               </h3>
               <div className="grid grid-cols-4 gap-2">
                 {countryRankingsYears.map((year) => (
-                  <Link
+                  <button
                     key={year}
-                    href={`/results/${year}`}
-                    className="text-white text-sm py-2 rounded-lg transition bg-[#8494FF] hover:bg-[#6B7BFF] cursor-pointer font-medium text-center block"
-                    title={`View ${year} rankings and awards`}
+                    disabled
+                    className="text-white text-sm py-2 rounded-lg transition bg-[#b879ff] disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-75 font-medium text-center"
+                    title={`${year} - Download not available`}
                   >
                     {year}
-                  </Link>
+                  </button>
                 ))}
               </div>
             </div>
@@ -159,13 +160,14 @@ export default function ResultsPage() {
               </h3>
               <div className="grid grid-cols-4 gap-2">
                 {awardsOnlyYears.map((year) => (
-                  <span
+                  <button
                     key={year}
-                    className="text-white text-sm py-2 rounded-lg transition bg-gray-400 cursor-not-allowed font-medium text-center block"
+                    disabled
+                    className="text-white text-sm py-2 rounded-lg transition bg-[#a1a5ff] disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-75 font-medium text-center"
                     title={`${year} - Not available`}
                   >
                     {year}
-                  </span>
+                  </button>
                 ))}
               </div>
             </div>

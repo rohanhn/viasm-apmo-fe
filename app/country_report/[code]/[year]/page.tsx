@@ -165,9 +165,9 @@ async function fetchStudents(
       `filters[year][slug][$eq]=${year}`,
     ];
 
-    const url = `https://viasm-dev.trangnguyen.edu.vn/api/students?populate=*&${filters.join(
-      '&'
-    )}`;
+    const url = `${
+      process.env.NEXT_PUBLIC_API_URL
+    }/api/students?populate=*&${filters.join('&')}`;
 
     const response = await fetch(url, {
       cache: 'no-store', // Ensure fresh data
