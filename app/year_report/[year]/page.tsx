@@ -76,29 +76,29 @@ interface GeneralInfo {
   localizations: any[];
 }
 
-interface ApiResponse {
-  data: CountryRanking[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
-}
+// interface ApiResponse {
+//   data: CountryRanking[];
+//   meta: {
+//     pagination: {
+//       page: number;
+//       pageSize: number;
+//       pageCount: number;
+//       total: number;
+//     };
+//   };
+// }
 
-interface GeneralInfoResponse {
-  data: GeneralInfo[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
-}
+// interface GeneralInfoResponse {
+//   data: GeneralInfo[];
+//   meta: {
+//     pagination: {
+//       page: number;
+//       pageSize: number;
+//       pageCount: number;
+//       total: number;
+//     };
+//   };
+// }
 
 interface PageProps {
   params: {
