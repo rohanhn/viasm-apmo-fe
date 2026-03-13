@@ -74,6 +74,12 @@ export default function CountryReportPage() {
       USA: 'us',
       URY: 'uy',
       UZB: 'uz',
+      UKR: 'ua',
+      SV: 'sv',
+      EC: 'ec',
+      CO: 'co',
+      MONGOL: 'mn',
+      GT: 'gt',
     };
     const twoLetterCode = countryCodeMap[countryCode];
     return twoLetterCode ? `fi fi-${twoLetterCode}` : 'fi fi-xx';
@@ -167,7 +173,7 @@ export default function CountryReportPage() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <span className={`${getFlagClass(countryCode)} text-2xl`} />
             <h1 className="sm:text-4xl text-3xl font-semibold">
-              {countryInfo.name}
+              {countryInfo?.name}
             </h1>
           </div>
           <p className="sm:mt-4 mt-2 text-md sm:text-lg max-w-2xl mx-auto">
