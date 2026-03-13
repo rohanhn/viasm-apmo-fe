@@ -6,7 +6,7 @@
     "prebuild": "powershell -ExecutionPolicy Bypass -File scripts/disable-i18next-types.ps1",
     "build": "next build", 
     "postbuild": "next-sitemap && powershell -ExecutionPolicy Bypass -File scripts/restore-i18next-types.ps1",
-    "start": "next start",
+    "start": "next start -p 4004",
     "build-stats": "cross-env ANALYZE=true npm run build",
     "export": "next export",
     "build-prod": "run-s clean build export",
