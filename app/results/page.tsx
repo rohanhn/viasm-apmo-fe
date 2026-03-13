@@ -1,23 +1,42 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable import/no-extraneous-dependencies */
+
+'use client';
+
 import 'flag-icons/css/flag-icons.min.css';
 
-import type { Metadata } from 'next';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
+import { serviceAPI } from '@/src/services/serviceAPI';
+import type { Country, CountryResponse } from '@/src/types';
 import { getAllCountries } from '@/src/utils/countriesUtils';
 
-export const metadata: Metadata = {
-  title: 'APMO Results - Rankings and Awards',
-  description:
-    'Explore APMO results, country rankings, and awards data. View yearly reports and results by participating countries.',
-  keywords:
-    'APMO, results, rankings, awards, mathematics olympiad, country results',
-};
-
 export default function ResultsPage() {
-  // Get all countries for the right column
-  const countries = getAllCountries();
+  // State for countries data
+  const [countries, setCountries] = useState<Country[]>(getAllCountries());
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // Fetch all countries from API
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        setLoading(true);
+        const response: CountryResponse = await serviceAPI.getCountries(1, 60);
+        if (response && response.data) {
+          setCountries(response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching countries:', error);
+        // Fallback to static countries data if API fails
+        setCountries(getAllCountries());
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCountries();
+  }, []);
 
   // Define year groups for the left column
   const fullReportsYears = [
@@ -188,44 +207,79 @@ export default function ResultsPage() {
               Explore the APMO results by country
             </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-              {countries.map((country) => (
-                <Link
-                  key={country.code}
-                  href={
-                    country.active ? `/country_report/${country.code}/all` : '#'
-                  }
-                  className={`flex items-center gap-2 text-sm py-2 px-3 rounded-lg transition font-medium text-center justify-center ${
-                    country.active
-                      ? 'border border-primary-400 text-primary-500 hover:bg-primary-50 cursor-pointer'
-                      : 'border border-gray-300 text-gray-400 cursor-not-allowed pointer-events-none'
-                  }`}
-                  title={
-                    country.active ? country.name : `${country.name} (Inactive)`
-                  }
-                >
-                  <span className={`${getFlagClass(country.code)} mr-1`} />
-                  <span className="truncate">{country.name}</span>
-                </Link>
-              ))}
-            </div>
+            {loading ? (
+              // Loading skeleton for countries grid
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {Array.from({ length: 20 }, (_, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-2 text-sm py-2 px-3 rounded-lg border border-gray-200 animate-pulse"
+                  >
+                    <div className="w-4 h-3 bg-gray-300 rounded mr-1" />
+                    <div className="h-4 bg-gray-300 rounded flex-1" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {countries.map((country) => (
+                  <Link
+                    key={country.code}
+                    href={
+                      country.active
+                        ? `/country_report/${country.code}/all`
+                        : '#'
+                    }
+                    className={`flex items-center gap-2 text-sm py-2 px-3 rounded-lg transition font-medium text-center justify-center ${
+                      country.active
+                        ? 'border border-primary-400 text-primary-500 hover:bg-primary-50 cursor-pointer'
+                        : 'border border-gray-300 text-gray-400 cursor-not-allowed pointer-events-none'
+                    }`}
+                    title={
+                      country.active
+                        ? country.name
+                        : `${country.name} (Inactive)`
+                    }
+                  >
+                    <span className={`${getFlagClass(country.code)} mr-1`} />
+                    <span className="truncate">{country.name}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
 
             {/* Stats Summary */}
             <div className="mt-6 pt-4 border-t border-gray-200">
-              <div className="grid grid-cols-2 gap-4 text-center">
-                <div>
-                  <div className="text-2xl font-bold text-primary-500">
-                    {countries.filter((c) => c.active).length}
+              {loading ? (
+                // Loading skeleton for stats
+                <div className="grid grid-cols-2 gap-4 text-center animate-pulse">
+                  <div>
+                    <div className="h-8 w-12 bg-gray-300 rounded mx-auto mb-2" />
+                    <div className="h-4 w-24 bg-gray-300 rounded mx-auto" />
                   </div>
-                  <div className="text-sm text-gray-600">Active Countries</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-600">
-                    {countries.length}
+                  <div>
+                    <div className="h-8 w-12 bg-gray-300 rounded mx-auto mb-2" />
+                    <div className="h-4 w-24 bg-gray-300 rounded mx-auto" />
                   </div>
-                  <div className="text-sm text-gray-600">Total Countries</div>
                 </div>
-              </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-4 text-center">
+                  <div>
+                    <div className="text-2xl font-bold text-primary-500">
+                      {countries.filter((c) => c.active).length}
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Active Countries
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-gray-600">
+                      {countries.length}
+                    </div>
+                    <div className="text-sm text-gray-600">Total Countries</div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
