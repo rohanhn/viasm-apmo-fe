@@ -169,7 +169,7 @@ async function fetchStudents(
     `filters[year][name][$eq]=${year}`,
     `filters[year][slug][$eq]=${year}`,
   ];
-  const baseUrl = process.env.NEXT_API_URL;
+  const baseUrl = 'https://viasm-dev.trangnguyen.edu.vn';
   // Lần 1: lấy meta.pagination.total
   const url1 = `${baseUrl}/api/students?populate=*&${filters.join('&')}`;
   console.log('url1:', url1);
